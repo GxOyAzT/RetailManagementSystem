@@ -1,6 +1,9 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using Autofac;
+using GeneralManagementUI;
+using GMProcessor;
 using Models;
+using System;
+using System.Windows.Forms;
 
 namespace ProductManageUI.UserControllers.Shop
 {
@@ -13,48 +16,38 @@ namespace ProductManageUI.UserControllers.Shop
 
         private void BtnCreate_Click(object sender, EventArgs e)
         {
-            //var cityValidator = DataValidationFactory.ValFacAddress.CityNameValCreateInst();
+            var shopModel = new ShopModel()
+            {
+                Id = Guid.NewGuid(),
+                City = TxbCity.Text,
+                Street = TxbStreet.Text
+            };
 
-            //if (!cityValidator.IsCityNameCorrect(TxbCity.Text))
-            //{
-            //    MessageBox.Show("City is in incorrect format");
-            //    return;
-            //}
+            IInsertShopProcessor insertShopProcessor;
 
-            //var streetValidator = DataValidationFactory.ValFacAddress.StreetAddressValcreateInst();
+            using (var scope = ContainerConfig.Configure().BeginLifetimeScope())
+            {
+                insertShopProcessor = scope.Resolve<IInsertShopProcessor>();
+            }
 
-            //if (!streetValidator.IsStreetCorrect(TxbStreet.Text))
-            //{
-            //    MessageBox.Show("Street is in incorrect format");
-            //    return;
-            //}
+            if (!insertShopProcessor.Insert(shopModel))
+            {
+                MessageBox.Show(insertShopProcessor.ErrorMessage);
+                return;
+            }
 
-            //ShopModel model = new ShopModel()
-            //{
-            //    Id = Guid.NewGuid(),
-            //    City = TxbCity.Text,
-            //    Street = TxbStreet.Text,
-            //    StorageCapacity = (int)NudStorageCap.Value
-            //};
-
-            //var db = DatabaseConnectionFactory.DbFacShop.InsertNewShopCreateInst();
-
-            //db.Insert(model);
-
-            //MessageBox.Show("Successfully added.");
-            //ResetControllers();
+            MessageBox.Show("Successfully added.");
         }
 
         private void BtnDiscard_Click(object sender, EventArgs e)
         {
-            //ResetControllers();
+            ResetControllers();
         }
 
         void ResetControllers()
         {
             TxbCity.Text = string.Empty;
             TxbStreet.Text = string.Empty;
-            NudStorageCap.Value = 0;
         }
     }
 }

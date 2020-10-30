@@ -40,7 +40,6 @@ namespace ProductManageUI.UserControllers.Shop
         {
             TxbCity.Text = model.City;
             TxbStreet.Text = model.Street;
-            NudStorageCapacity.Value = model.StorageCapacity;
         }
 
         private void BtnSave_Click(object sender, EventArgs e)

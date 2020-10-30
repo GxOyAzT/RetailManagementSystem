@@ -33,11 +33,8 @@
             this.TxbCity = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.TxbStreet = new System.Windows.Forms.TextBox();
-            this.NudStorageCap = new System.Windows.Forms.NumericUpDown();
-            this.label4 = new System.Windows.Forms.Label();
             this.BtnDiscard = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.NudStorageCap)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -83,33 +80,6 @@
             this.TxbStreet.Size = new System.Drawing.Size(194, 23);
             this.TxbStreet.TabIndex = 2;
             // 
-            // NudStorageCap
-            // 
-            this.NudStorageCap.Increment = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.NudStorageCap.Location = new System.Drawing.Point(42, 167);
-            this.NudStorageCap.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.NudStorageCap.Name = "NudStorageCap";
-            this.NudStorageCap.Size = new System.Drawing.Size(120, 23);
-            this.NudStorageCap.TabIndex = 3;
-            this.NudStorageCap.TabStop = false;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(42, 149);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(96, 15);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Storage Capacity";
-            // 
             // BtnDiscard
             // 
             this.BtnDiscard.Location = new System.Drawing.Point(260, 207);
@@ -136,8 +106,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.button1);
             this.Controls.Add(this.BtnDiscard);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.NudStorageCap);
             this.Controls.Add(this.TxbStreet);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.TxbCity);
@@ -145,7 +113,6 @@
             this.Controls.Add(this.label1);
             this.Name = "CreateShopUC";
             this.Size = new System.Drawing.Size(521, 246);
-            ((System.ComponentModel.ISupportInitialize)(this.NudStorageCap)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -158,8 +125,6 @@
         private System.Windows.Forms.TextBox TxbCity;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox TxbStreet;
-        private System.Windows.Forms.NumericUpDown NudStorageCap;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button BtnDiscard;
         private System.Windows.Forms.Button button1;
     }

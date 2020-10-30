@@ -57,6 +57,13 @@ namespace GeneralManagementUI
 
             builder.RegisterType<UpdateProductAvaliability>().As<IUpdateProductAvaliability>();
 
+            builder.RegisterType<InsertShopProcessor>().As<IInsertShopProcessor>();
+
+            builder.RegisterType<InsertNewShopEF>().As<IInsertNewShop>();
+
+            builder.RegisterType<ValidateCity>().As<IValidateCity>();
+
+            builder.RegisterType<ValidateAddressStreet>().As<IValidateAddressStreet>();
 
             return builder.Build();
         }
