@@ -22,6 +22,8 @@ namespace ProductManageUI.UserControllers.Product
             FilteredModels.AddRange(Models);
             PopulateDataGridViewWithData();
             MainPanel = mainPanel;
+            TxbCompanyName.Text = string.Empty;
+            TxbNameBarecode.Text = string.Empty;
         }
 
         #region Buttons Methods
