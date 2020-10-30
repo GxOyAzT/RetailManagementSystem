@@ -29,6 +29,8 @@ namespace GeneralManagementUI
 
             builder.RegisterType<GetFullProductBasicProducerDataADO>().As<IGetFullProductBasicProducerData>();
 
+            builder.RegisterType<GetProductFullInfoByIdEF>().As<IGetProductFullInfoById>();
+
             builder.RegisterType<ProducerInsertProcessing>().As<IProducerInsertProcessing>();
             builder.RegisterType<LoadDataForProducerController>().As<ILoadDataForProducerController>();
             builder.RegisterType<FilterProducerViewModels>().As<IFilterProducerViewModels>();
@@ -42,6 +44,18 @@ namespace GeneralManagementUI
             builder.RegisterType<LoadProductDataForProductListUC>().As<ILoadProductDataForProductListUC>();
 
             builder.RegisterType<FilterProductsForProductListUC>().As<IFilterProductsForProductListUC>();
+
+            builder.RegisterType<LoadModelForUpdateProductUC>().As<ILoadModelForUpdateProductUC>();
+
+            builder.RegisterType<UpdateProductBasic>().As<IUpdateProductBasic>();
+
+            builder.RegisterType<UpdateProductDataEF>().As<IUpdateProductData>();
+
+            builder.RegisterType<UpdateProductPrice>().As<IUpdateProductPrice>();
+
+            builder.RegisterType<UpdateProductStorage>().As<IUpdateProductStorage>();
+
+            builder.RegisterType<UpdateProductAvaliability>().As<IUpdateProductAvaliability>();
 
 
             return builder.Build();

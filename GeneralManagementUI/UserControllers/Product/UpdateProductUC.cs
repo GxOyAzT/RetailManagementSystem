@@ -1,26 +1,33 @@
 ﻿using System;
 using System.Windows.Forms;
+using Autofac;
+using GeneralManagementUI;
+using GMProcessor;
 using Models;
 
 namespace ProductManageUI.UserControllers.Product
 {
     public partial class UpdateProductUC : UserControl
     {
-        Guid ProductId { get; }
         FullProductDataEachModels Model { get; set; }
+
         public UpdateProductUC(Guid productId)
         {
             InitializeComponent();
-            ProductId = productId;
-            LoadModelData();
+            LoadModelData(productId);
             InitializeControllersWithData();
         }
 
-        void LoadModelData()
+        void LoadModelData(Guid productId)
         {
-            //var db = DatabaseConnectionFactory.DbFacProduct.GetFullProductEachModelsCreateInst();
+            ILoadModelForUpdateProductUC loadModelForUpdateProductUC;
 
-            //Model = db.GetFullProductDataEachModels(ProductId);
+            using (var scope = ContainerConfig.Configure().BeginLifetimeScope())
+            {
+                loadModelForUpdateProductUC = scope.Resolve<ILoadModelForUpdateProductUC>();
+            }
+
+            Model = loadModelForUpdateProductUC.Load(productId);
         }
 
         void InitializeControllersWithData()
@@ -41,66 +48,71 @@ namespace ProductManageUI.UserControllers.Product
 
         private void BtnUpdateBasics_Click(object sender, EventArgs e)
         {
-            //var validator = DataValidationFactory.ValFacProduct.FullBasicValCreateInst();
+            IUpdateProductBasic updateProductBasic;
 
-            //if (!validator.ValidateName(TxbProductName.Text))
-            //{
-            //    MessageBox.Show("Product Name is in incorrect format.");
-            //    return;
-            //}
+            using (var scope = ContainerConfig.Configure().BeginLifetimeScope())
+            {
+                updateProductBasic = scope.Resolve<IUpdateProductBasic>();
+            }
 
-            //if (!validator.ValidateShortName(TxbShortName.Text))
-            //{
-            //    MessageBox.Show("Product Short Name is in incorrect format.");
-            //    return;
-            //}
+            Model.ProductBasicsModel.Name = TxbProductName.Text;
+            Model.ProductBasicsModel.ShortName = TxbShortName.Text;
 
-            //Model.ProductBasicsModel.Name = TxbProductName.Text;
-            //Model.ProductBasicsModel.ShortName = TxbShortName.Text;
+            if (!updateProductBasic.Update(Model.ProductBasicsModel))
+            {
+                MessageBox.Show(updateProductBasic.ErrorMessage);
+                return;
+            }
 
-            //var db = DatabaseConnectionFactory.DbFacProduct.UpdateProductCreateInst();
-
-            //db.UpdateBasic(Model.ProductBasicsModel);
-
-
+            MessageBox.Show("Successfully updated.");
         }
 
         private void BtnUpdatePrice_Click(object sender, EventArgs e)
         {
-            //var validator = DataValidationFactory.ValFacProduct.FullPriceValCreateInst();
+            IUpdateProductPrice updateProductPrice;
 
-            //if (!validator.FullValidation(TxbPrice.Text, TxbTax.Text))
-            //{
-            //    MessageBox.Show("Price or tax are in incorrect format.");
-            //    return;
-            //}
+            using (var scope = ContainerConfig.Configure().BeginLifetimeScope())
+            {
+                updateProductPrice = scope.Resolve<IUpdateProductPrice>();
+            }
 
-            //Model.ProductPriceModel.Price = Convert.ToDecimal(TxbPrice.Text);
-            //Model.ProductPriceModel.Tax = Convert.ToInt32(TxbTax.Text);
+            if (!updateProductPrice.Update(Model.ProductPriceModel, TxbPrice.Text, TxbTax.Text))
+            {
+                MessageBox.Show(updateProductPrice.ErrorMessage);
+                return;
+            }
 
-            //var db = DatabaseConnectionFactory.DbFacProduct.UpdateProductCreateInst();
-
-            //db.UpdatePrice(Model.ProductPriceModel);
+            MessageBox.Show("Successfully updated.");
         }
 
         private void BtnUpdateStorage_Click(object sender, EventArgs e)
         {
-            //Model.ProductStorageModel.AimInWarehouse = (int)NudAimInWarehouse.Value;
-            //Model.ProductStorageModel.AimInEachShop = (int)NudInEachShop.Value;
+            IUpdateProductStorage updateProductStorage;
 
-            //var db = DatabaseConnectionFactory.DbFacProduct.UpdateProductCreateInst();
+            using (var scope = ContainerConfig.Configure().BeginLifetimeScope())
+            {
+                updateProductStorage = scope.Resolve<IUpdateProductStorage>();
+            }
+            
+            Model.ProductStorageModel.AimInWarehouse = (int)NudAimInWarehouse.Value;
 
-            //db.UpdateStorage(Model.ProductStorageModel);
+            updateProductStorage.Update(Model.ProductStorageModel);
+
+            MessageBox.Show("Successfully updated.");
         }
 
         private void BtnUpdateAvaliability_Click_1(object sender, EventArgs e)
         {
-            //Model.ProductAvaliabilityModel.AvailabilityAtProducer = CkbIsAvaliableAtProducer.Checked;
-            //Model.ProductAvaliabilityModel.IsInSale = CkbIsInSale.Checked;
+            IUpdateProductAvaliability updateProductAvaliability;
 
-            //var db = DatabaseConnectionFactory.DbFacProduct.UpdateProductCreateInst();
+            using (var scope = ContainerConfig.Configure().BeginLifetimeScope())
+            {
+                updateProductAvaliability = scope.Resolve<IUpdateProductAvaliability>();
+            }
 
-            //db.UpdateAvaliability(Model.ProductAvaliabilityModel);
+            updateProductAvaliability.Update(Model.ProductAvaliabilityModel, CkbIsAvaliableAtProducer.Checked, CkbIsInSale.Checked);
+
+            MessageBox.Show("Successfully updated.");
         }
     }
 }
