@@ -5,7 +5,7 @@ using Models;
 
 namespace DatabaseModule
 {
-    public class GetFullProductBasicProducerDataADO : IGetFullProductBasicProducerDataADO
+    public class GetFullProductBasicProducerDataADO : IGetFullProductBasicProducerData
     {
         
         public List<FullProductDataModelBasicCompany> GetFullProductModel()
@@ -33,7 +33,6 @@ namespace DatabaseModule
                         AvailabilityAtProducer = (bool)reader["ProductIsAvaliableAtProducer"],
                         IsInSale = (bool)reader["ProductIsInSale"],
                         AimInWarehouse = (int)reader["ProductAimInWarehouse"],
-                        AimInEachShop = (int)reader["ProductAimInEachShop"],
                         ProductWeight = (int)reader["ProductWeight"],
                         QuantityInBox = (int)reader["ProductQuantityInBox"],
                         ProducerId = (Guid)reader["ProducerId"],

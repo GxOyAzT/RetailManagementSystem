@@ -27,6 +27,8 @@ namespace GeneralManagementUI
             builder.RegisterType<InsertDistinctProductDataEF>().As<IInsertDistinctProductData>();
             builder.RegisterType<InsertFullProductDataEF>().As<IInsertFullProductData>();
 
+            builder.RegisterType<GetFullProductBasicProducerDataADO>().As<IGetFullProductBasicProducerData>();
+
             builder.RegisterType<ProducerInsertProcessing>().As<IProducerInsertProcessing>();
             builder.RegisterType<LoadDataForProducerController>().As<ILoadDataForProducerController>();
             builder.RegisterType<FilterProducerViewModels>().As<IFilterProducerViewModels>();
@@ -36,6 +38,11 @@ namespace GeneralManagementUI
             builder.RegisterType<LoadProducersForComboBox>().As<ILoadProducersForComboBox>();
 
             builder.RegisterType<InsertProductProcessor>().As<IInsertProductProcessor>();
+
+            builder.RegisterType<LoadProductDataForProductListUC>().As<ILoadProductDataForProductListUC>();
+
+            builder.RegisterType<FilterProductsForProductListUC>().As<IFilterProductsForProductListUC>();
+
 
             return builder.Build();
         }

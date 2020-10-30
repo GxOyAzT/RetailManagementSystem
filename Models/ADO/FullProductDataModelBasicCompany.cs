@@ -10,7 +10,6 @@ namespace Models
         public string ShortName { get; set; }
         public decimal Price { get; set; }
         public int Tax { get; set; }
-        public int AimInEachShop { get; set; }
         public int AimInWarehouse { get; set; }
         public int ProductWeight { get; set; }
         public int QuantityInBox { get; set; }

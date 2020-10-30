@@ -3,7 +3,7 @@ using Models;
 
 namespace DatabaseModule
 {
-    public interface IGetFullProductBasicProducerDataADO
+    public interface IGetFullProductBasicProducerData
     {
         public List<FullProductDataModelBasicCompany> GetFullProductModel();
     }
