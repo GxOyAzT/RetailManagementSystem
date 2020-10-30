@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Models
 {
-    public class ProducerModel : IProducerModel
+    public class ProducerModel
     {
         public Guid Id { get; set; }
         public string CompanyName { get; set; }

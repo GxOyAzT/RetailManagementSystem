@@ -1,10 +1,8 @@
-﻿using Models;
-using Models.EFModels;
-using System;
+﻿using System;
 
 namespace Models
 {
-    public class FullProductDataModelBasicCompany : IProductBasicsModel, IProductPriceModel, IProductStorageModel, IProductAvaliabilityModel
+    public class FullProductDataModelBasicCompany
     {
         public Guid Id { get; set; }
         public string Barecode { get; set; }

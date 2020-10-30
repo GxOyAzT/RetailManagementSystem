@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Models
 {
-    public class ProductStorageModel : IProductStorageModel
+    public class ProductStorageModel
     {
         public Guid ProductId { get; set; }
         public int AimInWarehouse { get; set; }

@@ -1,9 +1,8 @@
-﻿using Models.EFModels;
-using System;
+﻿using System;
 
 namespace Models
 {
-    public class ProductAvaliabilityModel : IProductAvaliabilityModel
+    public class ProductAvaliabilityModel
     {
         public Guid ProductId { get; set; }
         public bool AvailabilityAtProducer { get; set; }

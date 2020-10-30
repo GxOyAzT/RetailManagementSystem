@@ -1,10 +1,9 @@
-﻿using Models.EFModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Models
 {
-    public class ProductBasicsModel : IProductBasicsModel
+    public class ProductBasicsModel
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
