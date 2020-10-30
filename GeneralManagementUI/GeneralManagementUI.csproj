@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DatabaseModule\DatabaseModule.csproj" />
+    <ProjectReference Include="..\GMProcessor\GMProcessor.csproj" />
     <ProjectReference Include="..\Models\Models.csproj" />
   </ItemGroup>
 
