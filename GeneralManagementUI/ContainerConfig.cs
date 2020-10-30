@@ -16,11 +16,16 @@ namespace GeneralManagementUI
             builder.RegisterType<ValidateCity>().As<IValidateCity>();
             builder.RegisterType<ValidateAddressStreet>().As<IValidateAddressStreet>();
 
+            builder.RegisterType<UpdateProducerEF>().As<IUpdateProducerData>();
             builder.RegisterType<GetAllProducersEF>().As<IGetAllProducers>();
             builder.RegisterType<ValidateFullProducer>().As<IFullProducerValidation>();
             builder.RegisterType<InsertNewProducerEF>().As<IInsertNewProducer>();
 
             builder.RegisterType<ProducerInsertProcessing>().As<IProducerInsertProcessing>();
+            builder.RegisterType<LoadDataForProducerController>().As<ILoadDataForProducerController>();
+            builder.RegisterType<FilterProducerViewModels>().As<IFilterProducerViewModels>();
+            builder.RegisterType<UpdateProducerCollection>().As<IUpdateProducerCollection>();
+            builder.RegisterType<ConvertProducerListVmToM>().As<IConvertProducerListVmToM>();
 
             return builder.Build();
         }

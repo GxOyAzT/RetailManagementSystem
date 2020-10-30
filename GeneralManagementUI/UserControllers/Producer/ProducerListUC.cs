@@ -4,102 +4,116 @@ using System.Data;
 using System.Windows.Forms;
 using Models;
 using System.Linq;
+using GMProcessor;
+using GeneralManagementUI;
+using Autofac;
 
 namespace ProductManageUI.UserControllers.Producer
 {
     public partial class ProducerListUC : UserControl
     {
-        List<ProducerModel> ProductModels { get; set; }
         List<ProducerViewModel> ProducerViewModels { get; set; } = new List<ProducerViewModel>();
+        List<ProducerViewModel> ProducerViewModelsFiltered { get; set; } = new List<ProducerViewModel>();
 
         public ProducerListUC()
         {
             InitializeComponent();
-
             this.Dock = DockStyle.Fill;
+            DgvProducers.AutoGenerateColumns = false;
+            TxbCountry.Text = string.Empty;
+            TxbCompanyName.Text = string.Empty;
 
             LoadDataFromDatabase();
-
-            DgvProducers.AutoGenerateColumns = false;
-
-            DgvProducers.DataSource = ProducerViewModels;
+            DgvProducers.DataSource = ProducerViewModelsFiltered = ProducerViewModels.ToList();
         }
 
         void LoadDataFromDatabase()
         {
-            //var db = DatabaseConnectionFactory.DbFacProducer.GetProducersCreateInst();
-            //ProductModels = db.GetAllProducers();
-            //ResetData();
+            ILoadDataForProducerController loadDataForProducerController;
+
+            using (var scope = ContainerConfig.Configure().BeginLifetimeScope())
+            {
+                loadDataForProducerController = scope.Resolve<ILoadDataForProducerController>();
+            }
+
+            ProducerViewModels = loadDataForProducerController.Get();
         }
 
         void ResetData()
         {
-            //var converter = CollectionsManagementFactory.CollFacProducer.ProductViewModelConverterCreateInst();
-            //ProducerViewModels = converter.Convert(ProductModels);
-            //TxbCountry.Text = string.Empty;
-            //TxbCompanyName.Text = string.Empty;
+            ProducerViewModelsFiltered = ProducerViewModels;
+            DgvProducers.DataSource = ProducerViewModelsFiltered;
+            TxbCountry.Text = string.Empty;
+            TxbCompanyName.Text = string.Empty;
         }
 
         private void BtnReset_Click(object sender, EventArgs e)
         {
-            //if (ProducerViewModels.Where(e => e.WasModified() == true).Count() > 0)
-            //{
-            //    if (MessageBox.Show($"Are you sure you want to discard all changes?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.No)
-            //    {
-            //        return;
-            //    }
-            //}
-            
-            //ResetData();
+            if (ProducerViewModels.Where(e => e.WasModified() == true).Count() > 0)
+            {
+                if (MessageBox.Show($"Are you sure you want to discard all changes?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.No)
+                {
+                    return;
+                }
+            }
 
-            //DgvProducers.DataSource = ProducerViewModels;
+            ResetData();
         }
 
         private void BtnFilter_Click(object sender, EventArgs e)
         {
-            //if (ProducerViewModels.Where(e => e.WasModified() == true).Count() > 0)
-            //{
-            //    if (MessageBox.Show($"Are you sure you want to discard all changes?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.No)
-            //    {
-            //        return;
-            //    }
-            //}
+            if (ProducerViewModels.Where(e => e.WasModified() == true).Count() > 0)
+            {
+                if (MessageBox.Show($"Are you sure you want to discard all changes?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.No)
+                {
+                    return;
+                }
+            }
 
-            //var filter = CollectionsManagementFactory.CollFacProducer.FilterProducerObjectsCreateInst();
+            IFilterProducerViewModels filterProducerViewModels;
 
-            //var converter = CollectionsManagementFactory.CollFacProducer.ProductViewModelConverterCreateInst();
+            using (var scope = ContainerConfig.Configure().BeginLifetimeScope())
+            {
+                filterProducerViewModels = scope.Resolve<IFilterProducerViewModels>();
+            }
 
-            //DgvProducers.DataSource = ProducerViewModels = converter.Convert(filter.FilterByNameAndCountry(ProductModels, TxbCompanyName.Text, TxbCountry.Text));
+            ProducerViewModelsFiltered = filterProducerViewModels.Filter(ProducerViewModels, TxbCompanyName.Text, TxbCountry.Text);
+            DgvProducers.DataSource = ProducerViewModelsFiltered;
         }
 
         private void BtnSaveChanges_Click(object sender, EventArgs e)
         {
-            //if(ProducerViewModels.Where(e => e.WasModified() == true).Count() < 1)
-            //{
-            //    MessageBox.Show("No changes applied.");
-            //    return;
-            //}
+            if (ProducerViewModels.Where(e => e.WasModified() == true).Count() < 1)
+            {
+                MessageBox.Show("No changes applied.");
+                return;
+            }
 
-            //if (MessageBox.Show($"Are you sure you want to apply changes for {ProducerViewModels.Where(e => e.WasModified() == true ).Count()} object(s)?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.No)
-            //{
-            //    return;
-            //}
+            if (MessageBox.Show($"Are you sure you want to apply changes for {ProducerViewModels.Where(e => e.WasModified() == true).Count()} object(s)?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.No)
+            {
+                return;
+            }
 
-            //var validation = DataValidationFactory.ValFacProducer.FullProducerListValCreateInst();
+            IConvertProducerListVmToM convertProducerListVmToM;
+            IUpdateProducerCollection updateProducerCollection;
+            
+            using (var scope = ContainerConfig.Configure().BeginLifetimeScope())
+            {
+                updateProducerCollection = scope.Resolve<IUpdateProducerCollection>();
+                convertProducerListVmToM = scope.Resolve<IConvertProducerListVmToM>();
+            }
 
-            //var converter = CollectionsManagementFactory.CollFacProducer.ProductViewModelConverterCreateInst();
+            if (!updateProducerCollection.Update(
+                convertProducerListVmToM.Convert(
+                    ProducerViewModelsFiltered.Where(e => e.WasModified() == true).ToList())))
+            {
+                MessageBox.Show(updateProducerCollection.ErrorMessage);
+                return;
+            }
 
-            //if (!validation.AreAllProducersCorrect(converter.Convert(ProducerViewModels.Where(e => e.WasModified() == true).ToList())) == true)
-            //{
-            //    MessageBox.Show("Input data is in incorrect format.");
-            //}
+            MessageBox.Show("Successfully updated.");
 
-            //var db = DatabaseConnectionFactory.DbFacProducer.UpdateProducerListCreateInst();
-
-            //db.Update(converter.Convert(ProducerViewModels.Where(e => e.WasModified() == true).ToList()));
-
-            //LoadDataFromDatabase();
-            //DgvProducers.DataSource = ProducerViewModels;
+            ResetData();
         }
     }
 }
