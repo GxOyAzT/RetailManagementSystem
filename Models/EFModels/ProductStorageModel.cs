@@ -8,7 +8,6 @@ namespace Models
     {
         public Guid ProductId { get; set; }
         public int AimInWarehouse { get; set; }
-        public int AimInEachShop { get; set; }
         public int ProductWeight { get; set; }
         public int QuantityInBox { get; set; }
 

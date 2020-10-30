@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValidationModule", "ValidationModule\ValidationModule.csproj", "{7B6B46AD-0BEA-4F54-AC9C-CFA2C81A3ED4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseModule", "DatabaseModule\DatabaseModule.csproj", "{499FE2DD-1EE1-4BC9-AD0E-87C16DDBD68D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{7B6B46AD-0BEA-4F54-AC9C-CFA2C81A3ED4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B6B46AD-0BEA-4F54-AC9C-CFA2C81A3ED4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B6B46AD-0BEA-4F54-AC9C-CFA2C81A3ED4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{499FE2DD-1EE1-4BC9-AD0E-87C16DDBD68D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{499FE2DD-1EE1-4BC9-AD0E-87C16DDBD68D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{499FE2DD-1EE1-4BC9-AD0E-87C16DDBD68D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{499FE2DD-1EE1-4BC9-AD0E-87C16DDBD68D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
