@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Models
 {
@@ -7,5 +8,7 @@ namespace Models
         public Guid Id { get; set; }
         public string City { get; set; }
         public string Street { get; set; }
+
+        public virtual ICollection<OrderModel> OrderModels { get; set; }
     }
 }

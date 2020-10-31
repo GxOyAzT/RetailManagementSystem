@@ -25,6 +25,7 @@ namespace DatabaseModule
         public virtual DbSet<TruckModel> TruckModels { get; set; }
         public virtual DbSet<WarehouseModel> WarehouseModels { get; set; }
         public virtual DbSet<WarehouseChangesModel> WarehouseChangesModels { get; set; }
+        public virtual DbSet<OrderModel> OrderModels { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -187,6 +188,20 @@ namespace DatabaseModule
                     .WithMany(d => d.WarehouseChangesModels)
                     .HasForeignKey(x => x.ProductId)
                     .HasConstraintName("FK__Warehouse__Produ__52593CB8");
+            });
+
+            modelBuilder.Entity<OrderModel>(entity =>
+            {
+                entity.ToTable("Order", "cr");
+
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.ShopId).HasColumnName("Shop_Id");
+
+                entity.HasOne(e => e.ShopModel)
+                    .WithMany(d => d.OrderModels)
+                    .HasForeignKey(x => x.ShopId)
+                    .HasConstraintName("FK__Order__Shop_Id__76969D2E");
             });
 
             OnModelCreatingPartial(modelBuilder);
