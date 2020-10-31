@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
+using Autofac;
+using GMProcessor;
 using Models;
 
 namespace GeneralManagementUI.UserControllers.Truck
@@ -20,57 +23,69 @@ namespace GeneralManagementUI.UserControllers.Truck
 
         void LoadModelsFromDatabase()
         {
-            //var db = DatabaseConnectionFactory.DbFacTruck.GetTrucksCreateInst();
-            //SortedModels = TruckModels = db.Get();
+            ILoadTrucks loadTrucks;
+
+            using (var scope = ContainerConfig.Configure().BeginLifetimeScope())
+            {
+                loadTrucks = scope.Resolve<ILoadTrucks>();
+            }
+
+            TruckModels = loadTrucks.Load();
+
+            SortedModels = TruckModels.ToList();
         }
 
         void PopulateDataGridViewWithData()
         {
-            //DgvTruck.DataSource = SortedModels;
+            DgvTruck.DataSource = SortedModels;
         }
 
         private void CbxSort_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //var sorter = CollectionsManagementFactory.CollFacTruck.SortTruckListCreateInst();
+            if (CbxFilter.SelectedItem.ToString() == "No Filter")
+            {
+                SortedModels = TruckModels.ToList();
+                PopulateDataGridViewWithData();
+                return;
+            }
 
-            //if (CbxFilter.SelectedItem.ToString() == "No Filter")
-            //{
-            //    SortedModels = TruckModels;
-            //    PopulateDataGridViewWithData();
-            //    return;
-            //}
+            if (CbxFilter.SelectedItem.ToString() == "Name")
+            {
+                SortedModels = TruckModels.OrderBy(e => e.Name).ToList();
+                PopulateDataGridViewWithData();
+                return;
+            }
 
-            //if (CbxFilter.SelectedItem.ToString() == "Name")
-            //{
-            //    SortedModels = sorter.SortByName(TruckModels);
-            //    PopulateDataGridViewWithData();
-            //    return;
-            //}
+            if (CbxFilter.SelectedItem.ToString() == "Max Capacity")
+            {
+                SortedModels = TruckModels.OrderBy(e => e.MaxCapacity).ToList();
+                PopulateDataGridViewWithData();
+                return;
+            }
 
-            //if (CbxFilter.SelectedItem.ToString() == "Max Capacity")
-            //{
-            //    SortedModels = sorter.SortByStorageCapacity(TruckModels);
-            //    PopulateDataGridViewWithData();
-            //    return;
-            //}
-
-            //if (CbxFilter.SelectedItem.ToString() == "Is Avaliable")
-            //{
-            //    SortedModels = sorter.SortByAvaliability(TruckModels);
-            //    PopulateDataGridViewWithData();
-            //    return;
-            //}
+            if (CbxFilter.SelectedItem.ToString() == "Is Avaliable")
+            {
+                SortedModels = TruckModels.OrderBy(e => e.IsAvaliable).ToList();
+                PopulateDataGridViewWithData();
+                return;
+            }
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            //var db = DatabaseConnectionFactory.DbFacTruck.UpdateTruckListCreateInst();
-            //db.Update(SortedModels);
+            IUpdateTruckListProcessor updateTruckListProcessor;
 
-            //MessageBox.Show("Successfully updated.");
+            using (var scope = ContainerConfig.Configure().BeginLifetimeScope())
+            {
+                updateTruckListProcessor = scope.Resolve<IUpdateTruckListProcessor>();
+            }
 
-            //LoadModelsFromDatabase();
-            //PopulateDataGridViewWithData();
+            updateTruckListProcessor.Update(SortedModels);
+
+            MessageBox.Show("Successfully updated.");
+
+            LoadModelsFromDatabase();
+            PopulateDataGridViewWithData();
         }
     }
 }

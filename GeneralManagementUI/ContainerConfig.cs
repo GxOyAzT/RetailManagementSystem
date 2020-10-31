@@ -83,6 +83,14 @@ namespace GeneralManagementUI
 
             builder.RegisterType<GetAllTrucksEF>().As<IGetAllTrucks>();
 
+            builder.RegisterType<LoadTrucks>().As<ILoadTrucks>();
+
+            builder.RegisterType<UpdateTruckListEF>().As<IUpdateTruckList>();
+
+            builder.RegisterType<UpdateTruckListProcessor>().As<IUpdateTruckListProcessor>();
+
+            builder.RegisterType<UpdateTruckEF>().As<IUpdateTruck>();
+
             return builder.Build();
         }
     }
