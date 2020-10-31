@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
+using Autofac;
+using GMProcessor;
 using Models;
 
 namespace GeneralManagementUI.UserControllers.Truck
@@ -13,28 +15,29 @@ namespace GeneralManagementUI.UserControllers.Truck
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            //var validator = DataValidationFactory.ValFacTruck.TruckValCreateInst();
+            TruckModel model = new TruckModel()
+            {
+                Id = Guid.NewGuid(),
+                Name = TxbName.Text,
+                MaxCapacity = (int)NudMaxCapacity.Value,
+                IsAvaliable = CkbIsAvaliable.Checked
+            };
 
-            //if (!validator.FullValidation(TxbName.Text))
-            //{
-            //    MessageBox.Show("Truck name is in incorrect format or exists in database.");
-            //    return;
-            //}
+            IInsertTruckProcessor insertTruckProcessor;
 
-            //TruckModel model = new TruckModel()
-            //{
-            //    Id = Guid.NewGuid(),
-            //    Name = TxbName.Text,
-            //    MaxCapacity = (int)NudMaxCapacity.Value,
-            //    IsAvaliable = CkbIsAvaliable.Checked
-            //};
+            using (var scope = ContainerConfig.Configure().BeginLifetimeScope())
+            {
+                insertTruckProcessor = scope.Resolve<IInsertTruckProcessor>();
+            }
 
-            //var db = DatabaseConnectionFactory.DbFacTruck.InsertTruckCreateInst();
+            if (!insertTruckProcessor.Insert(model))
+            {
+                MessageBox.Show(insertTruckProcessor.ErrorMessage);
+                return;
+            }
 
-            //db.Insert(model);
-
-            //MessageBox.Show("Successfully added.");
-            //ClearControllers();
+            MessageBox.Show("Successfully added.");
+            ClearControllers();
         }
 
         void ClearControllers()

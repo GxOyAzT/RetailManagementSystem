@@ -73,6 +73,16 @@ namespace GeneralManagementUI
 
             builder.RegisterType<UpdateShopEF>().As<IUpdateShop>();
 
+            builder.RegisterType<InsertTruckEF>().As<IInsertTruck>();
+
+            builder.RegisterType<ValidateTruckName>().As<IValidateTruckName>();
+
+            builder.RegisterType<ValidateTruckNameUniqueness>().As<IValidateTruckNameUniqueness>();
+
+            builder.RegisterType<InsertTruckProcessor>().As<IInsertTruckProcessor>();
+
+            builder.RegisterType<GetAllTrucksEF>().As<IGetAllTrucks>();
+
             return builder.Build();
         }
     }
