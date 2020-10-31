@@ -65,6 +65,14 @@ namespace GeneralManagementUI
 
             builder.RegisterType<ValidateAddressStreet>().As<IValidateAddressStreet>();
 
+            builder.RegisterType<GetAllShopsEF>().As<IGetAllShops>();
+
+            builder.RegisterType<LoadShopModels>().As<ILoadShopModels>();
+
+            builder.RegisterType<UpdateShopProcessor>().As<IUpdateShopProcessor>();
+
+            builder.RegisterType<UpdateShopEF>().As<IUpdateShop>();
+
             return builder.Build();
         }
     }

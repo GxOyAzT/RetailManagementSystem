@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using Autofac;
+using GeneralManagementUI;
+using GMProcessor;
 using Models;
 
 namespace ProductManageUI.UserControllers.Shop
@@ -13,15 +16,20 @@ namespace ProductManageUI.UserControllers.Shop
         {
             InitializeComponent();
             LoadShopModels();
-            InitializeGgvWithData();
             DgvShop.AutoGenerateColumns = false;
+            InitializeGgvWithData();
         }
 
         void LoadShopModels()
         {
-            //var db = DatabaseConnectionFactory.DbFacShop.GetShopsCreateInst();
+            ILoadShopModels loadShopModels;
 
-            //ShopModels = db.Get();
+            using (var scope = ContainerConfig.Configure().BeginLifetimeScope())
+            {
+                loadShopModels = scope.Resolve<ILoadShopModels>();
+            }
+
+            ShopModels = loadShopModels.Load();
         }
 
         void InitializeGgvWithData()
@@ -33,7 +41,6 @@ namespace ProductManageUI.UserControllers.Shop
         {
             TxbCity.Text = string.Empty;
             TxbStreet.Text = string.Empty;
-            NudStorageCapacity.Value = 0;
         }
 
         void InitializeChangeControllersWithData(ShopModel model)
@@ -44,48 +51,48 @@ namespace ProductManageUI.UserControllers.Shop
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            //if (SelectedModel == null)
-            //    return;
+            if (SelectedModel == null)
+                return;
 
-            //var validator = DataValidationFactory.ValFacShop.FullShopValCreateInst();
+            SelectedModel.City = TxbCity.Text;
+            SelectedModel.Street = TxbStreet.Text;
 
-            //if (!validator.Validate(TxbCity.Text, TxbStreet.Text))
-            //{
-            //    MessageBox.Show("Data is in incorrect format");
-            //    return;
-            //}
+            IUpdateShopProcessor updateShop;
 
-            //SelectedModel.City = TxbCity.Text;
-            //SelectedModel.Street = TxbStreet.Text;
-            //SelectedModel.StorageCapacity = (int)NudStorageCapacity.Value;
+            using (var scope = ContainerConfig.Configure().BeginLifetimeScope())
+            {
+                updateShop = scope.Resolve<IUpdateShopProcessor>();
+            }
 
-            //var db = DatabaseConnectionFactory.DbFacShop.UpdateShopCreateInst();
+            if (!updateShop.Update(SelectedModel))
+            {
+                MessageBox.Show(updateShop.ErrorMessage);
+                return;
+            }
 
-            //db.Update(SelectedModel);
-
-            //MessageBox.Show("Successfully updated.");
-            //SelectedModel = null;
-            //ResetControllers();
-            //LoadShopModels();
-            //InitializeGgvWithData();
+            MessageBox.Show("Successfully updated.");
+            SelectedModel = null;
+            ResetControllers();
+            LoadShopModels();
+            InitializeGgvWithData();
         }
 
         private void BtnDiscard_Click(object sender, EventArgs e)
         {
-            //if (SelectedModel == null)
-            //    return;
+            if (SelectedModel == null)
+                return;
 
-            //InitializeChangeControllersWithData(SelectedModel);
+            InitializeChangeControllersWithData(SelectedModel);
         }
 
         private void DgvShop_MouseClick(object sender, MouseEventArgs e)
         {
-            //if (DgvShop.CurrentCell.RowIndex < 0)
-            //    return;
+            if (DgvShop.CurrentCell.RowIndex < 0)
+                return;
 
-            //SelectedModel = ShopModels[DgvShop.CurrentCell.RowIndex];
+            SelectedModel = ShopModels[DgvShop.CurrentCell.RowIndex];
 
-            //InitializeChangeControllersWithData(SelectedModel);
+            InitializeChangeControllersWithData(SelectedModel);
         }
     }
 }
