@@ -24,11 +24,7 @@ namespace DatabaseModule
         public virtual DbSet<ShopModel> ShopModels { get; set; }
         public virtual DbSet<TruckModel> TruckModels { get; set; }
         public virtual DbSet<WarehouseModel> WarehouseModels { get; set; }
-        public virtual DbSet<EachShopModel> EachShopModels { get; set; }
         public virtual DbSet<WarehouseChangesModel> WarehouseChangesModels { get; set; }
-        public virtual DbSet<EachShopChangesModel> EachShopChangesModels { get; set; }
-        public virtual DbSet<TaxChangesModel> TaxChangesModels { get; set; }
-        public virtual DbSet<PriceChangesModel> PriceChangesModels { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -179,29 +175,6 @@ namespace DatabaseModule
                     .HasConstraintName("FK__Warehouse__Produ__4CA06362");
             });
 
-            modelBuilder.Entity<EachShopModel>(entity =>
-            {
-                entity.ToTable("EachShop", "st");
-
-                entity.Property(e => e.ProductId)
-                    .HasColumnName("Product_Id");
-
-                entity.Property(e => e.ShopId)
-                    .HasColumnName("Shop_Id");
-
-                entity.HasKey(e => new { e.ProductId, e.ShopId });
-
-                entity.HasOne(e => e.ProductBasicsModel)
-                    .WithMany(d => d.EachShopModels)
-                    .HasForeignKey(x => x.ProductId)
-                    .HasConstraintName("FK__EachShop__Produc__4F7CD00D");
-
-                entity.HasOne(e => e.ShopModel)
-                    .WithMany(d => d.EachShopModels)
-                    .HasForeignKey(x => x.ShopId)
-                    .HasConstraintName("FK__EachShop__Shop_I__5070F446");
-            });
-
             modelBuilder.Entity<WarehouseChangesModel>(entity =>
             {
                 entity.ToTable("WarehouseChanges", "st");
@@ -214,47 +187,6 @@ namespace DatabaseModule
                     .WithMany(d => d.WarehouseChangesModels)
                     .HasForeignKey(x => x.ProductId)
                     .HasConstraintName("FK__Warehouse__Produ__52593CB8");
-            });
-
-            modelBuilder.Entity<EachShopChangesModel>(entity =>
-            {
-                entity.ToTable("EachShopChanges", "st");
-
-                entity.Property(e => e.ProductId)
-                    .HasColumnName("Product_Id");
-
-                entity.Property(e => e.ShopId)
-                    .HasColumnName("Shop_Id");
-
-                entity.HasKey(e => new { e.ProductId, e.ShopId });
-
-                entity.HasOne(e => e.ProductBasicsModel)
-                    .WithMany(d => d.EachShopChangesModels)
-                    .HasForeignKey(x => x.ProductId)
-                    .HasConstraintName("FK__EachShopC__Produ__5441852A");
-
-                entity.HasOne(e => e.ShopModel)
-                    .WithMany(d => d.EachShopChangesModels)
-                    .HasForeignKey(x => x.ShopId)
-                    .HasConstraintName("FK__EachShopC__Shop___5535A963");
-            });
-
-            modelBuilder.Entity<PriceChangesModel>(entity =>
-            {
-                entity.ToTable("PriceChanges", "dc");
-
-                entity.HasNoKey();
-
-                entity.Property(e => e.ProductId).HasColumnName("Product_Id");
-            });
-
-            modelBuilder.Entity<TaxChangesModel>(entity =>
-            {
-                entity.ToTable("TaxChanges", "dc");
-
-                entity.HasNoKey();
-
-                entity.Property(e => e.ProductId).HasColumnName("Product_Id");
             });
 
             OnModelCreatingPartial(modelBuilder);

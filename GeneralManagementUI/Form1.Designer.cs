@@ -71,7 +71,7 @@
             this.tableLayoutPanel2.Controls.Add(this.BtnCreateNewProduct, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.btnAddNewProducer, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.BtnProducers, 0, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 69);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 8;
@@ -83,15 +83,15 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(194, 589);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(194, 500);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // BtnTrucks
             // 
             this.BtnTrucks.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnTrucks.Location = new System.Drawing.Point(3, 514);
+            this.BtnTrucks.Location = new System.Drawing.Point(3, 437);
             this.BtnTrucks.Name = "BtnTrucks";
-            this.BtnTrucks.Size = new System.Drawing.Size(188, 72);
+            this.BtnTrucks.Size = new System.Drawing.Size(188, 60);
             this.BtnTrucks.TabIndex = 0;
             this.BtnTrucks.Text = "Trucks";
             this.BtnTrucks.UseVisualStyleBackColor = true;
@@ -100,9 +100,9 @@
             // BtnAddTruck
             // 
             this.BtnAddTruck.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnAddTruck.Location = new System.Drawing.Point(3, 441);
+            this.BtnAddTruck.Location = new System.Drawing.Point(3, 375);
             this.BtnAddTruck.Name = "BtnAddTruck";
-            this.BtnAddTruck.Size = new System.Drawing.Size(188, 67);
+            this.BtnAddTruck.Size = new System.Drawing.Size(188, 56);
             this.BtnAddTruck.TabIndex = 0;
             this.BtnAddTruck.Text = "New Truck";
             this.BtnAddTruck.UseVisualStyleBackColor = true;
@@ -111,9 +111,9 @@
             // BtnAllShops
             // 
             this.BtnAllShops.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnAllShops.Location = new System.Drawing.Point(3, 368);
+            this.BtnAllShops.Location = new System.Drawing.Point(3, 313);
             this.BtnAllShops.Name = "BtnAllShops";
-            this.BtnAllShops.Size = new System.Drawing.Size(188, 67);
+            this.BtnAllShops.Size = new System.Drawing.Size(188, 56);
             this.BtnAllShops.TabIndex = 0;
             this.BtnAllShops.Text = "Shops";
             this.BtnAllShops.UseVisualStyleBackColor = true;
@@ -122,9 +122,9 @@
             // BtnNewShop
             // 
             this.BtnNewShop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnNewShop.Location = new System.Drawing.Point(3, 295);
+            this.BtnNewShop.Location = new System.Drawing.Point(3, 251);
             this.BtnNewShop.Name = "BtnNewShop";
-            this.BtnNewShop.Size = new System.Drawing.Size(188, 67);
+            this.BtnNewShop.Size = new System.Drawing.Size(188, 56);
             this.BtnNewShop.TabIndex = 0;
             this.BtnNewShop.Text = "New Shop";
             this.BtnNewShop.UseVisualStyleBackColor = true;
@@ -133,9 +133,9 @@
             // BtnAllProducts
             // 
             this.BtnAllProducts.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnAllProducts.Location = new System.Drawing.Point(3, 222);
+            this.BtnAllProducts.Location = new System.Drawing.Point(3, 189);
             this.BtnAllProducts.Name = "BtnAllProducts";
-            this.BtnAllProducts.Size = new System.Drawing.Size(188, 67);
+            this.BtnAllProducts.Size = new System.Drawing.Size(188, 56);
             this.BtnAllProducts.TabIndex = 0;
             this.BtnAllProducts.Text = "Products";
             this.BtnAllProducts.UseVisualStyleBackColor = true;
@@ -144,9 +144,9 @@
             // BtnCreateNewProduct
             // 
             this.BtnCreateNewProduct.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnCreateNewProduct.Location = new System.Drawing.Point(3, 149);
+            this.BtnCreateNewProduct.Location = new System.Drawing.Point(3, 127);
             this.BtnCreateNewProduct.Name = "BtnCreateNewProduct";
-            this.BtnCreateNewProduct.Size = new System.Drawing.Size(188, 67);
+            this.BtnCreateNewProduct.Size = new System.Drawing.Size(188, 56);
             this.BtnCreateNewProduct.TabIndex = 0;
             this.BtnCreateNewProduct.Text = "New Product";
             this.BtnCreateNewProduct.UseVisualStyleBackColor = true;
@@ -155,9 +155,9 @@
             // btnAddNewProducer
             // 
             this.btnAddNewProducer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAddNewProducer.Location = new System.Drawing.Point(3, 76);
+            this.btnAddNewProducer.Location = new System.Drawing.Point(3, 65);
             this.btnAddNewProducer.Name = "btnAddNewProducer";
-            this.btnAddNewProducer.Size = new System.Drawing.Size(188, 67);
+            this.btnAddNewProducer.Size = new System.Drawing.Size(188, 56);
             this.btnAddNewProducer.TabIndex = 0;
             this.btnAddNewProducer.Text = "New Producer";
             this.btnAddNewProducer.UseVisualStyleBackColor = true;
@@ -169,7 +169,7 @@
             this.BtnProducers.FlatAppearance.BorderSize = 0;
             this.BtnProducers.Location = new System.Drawing.Point(3, 3);
             this.BtnProducers.Name = "BtnProducers";
-            this.BtnProducers.Size = new System.Drawing.Size(188, 67);
+            this.BtnProducers.Size = new System.Drawing.Size(188, 56);
             this.BtnProducers.TabIndex = 0;
             this.BtnProducers.Text = "Producers";
             this.BtnProducers.UseVisualStyleBackColor = true;
