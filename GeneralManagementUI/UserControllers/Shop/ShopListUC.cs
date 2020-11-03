@@ -94,5 +94,23 @@ namespace ProductManageUI.UserControllers.Shop
 
             InitializeChangeControllersWithData(SelectedModel);
         }
+
+        private void BtnCreateWebAcc_Click(object sender, EventArgs e)
+        {
+            if (SelectedModel == null)
+                return;
+
+            if (SelectedModel.IsWebAccActive)
+                MessageBox.Show("There is already existing web account for this point of sale.");
+
+            IRegistrationProcess registrationProcess;
+
+            using (var scope = ContainerConfig.Configure().BeginLifetimeScope())
+            {
+                registrationProcess = scope.Resolve<IRegistrationProcess>();
+            }
+
+            registrationProcess.Register(SelectedModel.Id);
+        }
     }
 }

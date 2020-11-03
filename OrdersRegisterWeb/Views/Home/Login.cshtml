@@ -1,0 +1,15 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model OrdersRegisterWeb.LoginViewModel
+
+<h1>Home/Login</h1>
+
+<h3>@(Model.ShopModel.Street)</h3>
+
+<form method="post">
+    <input type="text" readonly hidden asp-for="ShopModel.Id" />
+    <input type="text" readonly hidden asp-for="UserName" />
+    <input type="text" readonly asp-for="ShopModel.City" />
+    <input type="text" readonly asp-for="ShopModel.Street" />
+    <input type="password" asp-for="Password" />
+    <input type="submit" value="Login"/>
+</form>

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Models;
+using System.Text;
 
 namespace DatabaseModule
 {
@@ -26,6 +27,7 @@ namespace DatabaseModule
         public virtual DbSet<WarehouseModel> WarehouseModels { get; set; }
         public virtual DbSet<WarehouseChangesModel> WarehouseChangesModels { get; set; }
         public virtual DbSet<OrderModel> OrderModels { get; set; }
+        public virtual DbSet<ShopWebAccountTokensModel> ShopWebAccountTokens { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -202,6 +204,20 @@ namespace DatabaseModule
                     .WithMany(d => d.OrderModels)
                     .HasForeignKey(x => x.ShopId)
                     .HasConstraintName("FK__Order__Shop_Id__76969D2E");
+            });
+
+            modelBuilder.Entity<ShopWebAccountTokensModel>(entity =>
+            {
+                entity.ToTable("ShopWebAccountTokens", "sh");
+
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.ShopId).HasColumnName("Shop_Id");
+
+                entity.HasOne(e => e.ShopModel)
+                    .WithMany(d => d.ShopWebAccountTokensModels)
+                    .HasForeignKey(x => x.ShopId)
+                    .HasConstraintName("FK__ShopWebAc__Shop___29221CFB");
             });
 
             OnModelCreatingPartial(modelBuilder);

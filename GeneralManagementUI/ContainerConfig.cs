@@ -91,6 +91,14 @@ namespace GeneralManagementUI
 
             builder.RegisterType<UpdateTruckEF>().As<IUpdateTruck>();
 
+            builder.RegisterType<GenerateToken>().As<IGenerateToken>();
+
+            builder.RegisterType<InsertTokenProcess>().As<IInsertTokenProcess>();
+
+            builder.RegisterType<RegistrationProcess>().As<IRegistrationProcess>();
+
+            builder.RegisterType<InsertTokenEF>().As<IInsertToken>();
+
             return builder.Build();
         }
     }
