@@ -25,7 +25,7 @@ namespace OrdersRegisterWeb.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("LoginPointOfSalesList");
         }
 
         [HttpGet]
@@ -103,7 +103,7 @@ namespace OrdersRegisterWeb.Controllers
         }
 
         [HttpPost]
-        public async Task<string> Login(LoginViewModel loginViewModel)
+        public async Task<IActionResult> Login(LoginViewModel loginViewModel)
         {
             var user = await _userManager.FindByNameAsync(loginViewModel.UserName);
 
@@ -113,11 +113,11 @@ namespace OrdersRegisterWeb.Controllers
 
                 if (signInResult.Succeeded)
                 {
-                    return "succesfully logged in.";
+                    return RedirectToAction("AllOrders", "Orders");
                 }
             }
 
-            return "Not logged in.";
+            return View();
         }
     }
 }

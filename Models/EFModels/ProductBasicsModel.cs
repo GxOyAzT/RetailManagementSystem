@@ -17,5 +17,6 @@ namespace Models
         public virtual ProductAvaliabilityModel ProductAvaliabilityModel { get; set; }
         public virtual WarehouseModel WarehouseModel { get; set; }
         public virtual ICollection<WarehouseChangesModel> WarehouseChangesModels { get; set; }
+        public virtual ICollection<OrderProductModel> OrderProductModels { get; set; }
     }
 }

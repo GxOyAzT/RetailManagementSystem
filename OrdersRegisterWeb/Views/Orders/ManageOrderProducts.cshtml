@@ -1,0 +1,35 @@
+﻿@model List<ManageOrderProdVM>
+
+<h1>Order/ManageOrderProducts</h1>
+
+<br/><br/>
+
+<form method="post">
+    <table>
+        <thead>
+            <tr>
+                <td>Producer</td>
+                <td>Product</td>
+                <td>Barecode</td>
+                <td>Price</td>
+                <td>Order Quantity</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <input hidden asp-for="@Model[i].ProductBasicsModel.Id" />
+                <input hidden asp-for="@Model[i].OrderId" />
+                <tr>
+                    <td>@(Model[i].ProductBasicsModel.ProducerModel.CompanyName)</td>
+                    <td>@(Model[i].ProductBasicsModel.Name)</td>
+                    <td>@(Model[i].ProductBasicsModel.Name)</td>
+                    <td>@(Model[i].ProductBasicsModel.ProductPriceModel.Price.ToString("C")) x @(Model[i].ProductBasicsModel.ProductStorageModel.QuantityInBox) = @((Model[i].ProductBasicsModel.ProductPriceModel.Price * Model[i].ProductBasicsModel.ProductStorageModel.QuantityInBox).ToString("C"))</td>
+                    <td><input type="number" min="0" asp-for="@Model[i].NewOrderedQua" /></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <input type="submit" value="Save"/>
+</form>

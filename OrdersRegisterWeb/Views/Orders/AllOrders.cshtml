@@ -1,5 +1,4 @@
-﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@model List<Models.OrderModel>
+﻿@model List<OrderModel>
 
 <h1>Orders/AllOrders</h1>
 
@@ -9,6 +8,7 @@
             <th>ID</th>
             <th>Status</th>
             <th>ConfirmationDate</th>
+            <th>Detials</th>
         </tr>
     </thead>
     <tbody>
@@ -23,7 +23,7 @@
                     }
                     else
                     {
-                        <a asp-action="OrderDetails" asp-route-orderId="@(item.Id.ToString())">Modify</a>
+                        <p>Not Confrimed</p>
                     }
                 </td>
                 <td>
@@ -36,6 +36,7 @@
                         <p>-</p>
                     }
                 </td>
+                <td><a asp-action="OrderDetails" asp-route-orderId="@(item.Id.ToString())">See</a></td>
             </tr>
         }
     </tbody>

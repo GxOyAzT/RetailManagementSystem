@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Models
 {
@@ -12,5 +13,6 @@ namespace Models
         public DateTime? ConfirmationDate { get; set; }
 
         public virtual ShopModel ShopModel { get; set; }
+        public virtual ICollection<OrderProductModel> OrderProductModels { get; set; }
     }
 }

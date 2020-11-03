@@ -24,6 +24,22 @@ namespace OrdersRegisterWeb
 
             builder.RegisterType<GetAllOrdersProcess>().As<IGetAllOrdersProcess>();
 
+            builder.RegisterType<GetOrderDetailsVM>().As<IGetOrderedDetailsVM>();
+
+            builder.RegisterType<GetOrderProductWhereOrderIdEF>().As<IGetOrderProductWhereOrderId>();
+
+            builder.RegisterType<UpdateOrderAsConfByIdEF>().As<IUpdateOrderAsConfById>();
+
+            builder.RegisterType<SetOrderStatusAsConfirmed>().As<ISetOrderStatusAsConfirmed>();
+
+            builder.RegisterType<GetAllProductsEF>().As<IGetAllProducts>();
+
+            builder.RegisterType<LoadDataToManageOrderProd>().As<ILoadDataToManageOrderProd>();
+
+            builder.RegisterType<RemoveOrderProdAndInsertNewEF>().As<IRemoveOrderProdAndInsertNew>();
+
+            builder.RegisterType<ProcessManageOrderProducts>().As<IProcessManageOrderProducts>();
+
             return builder.Build();
         }
     }

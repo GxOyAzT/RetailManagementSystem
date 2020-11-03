@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Autofac;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Models;
 using ORProcessor;
 
 namespace OrdersRegisterWeb.Controllers
@@ -14,12 +13,10 @@ namespace OrdersRegisterWeb.Controllers
     public class OrdersController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
 
-        public OrdersController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public OrdersController(UserManager<IdentityUser> userManager)
         {
             _userManager = userManager;
-            _signInManager = signInManager;
 
         }
 
@@ -34,12 +31,68 @@ namespace OrdersRegisterWeb.Controllers
                 getAllOrdersProcess = scope.Resolve<IGetAllOrdersProcess>();
             }
 
-            return View(getAllOrdersProcess.Get(Guid.Parse(result)));
+            var orders = getAllOrdersProcess.Get(Guid.Parse(result));
+
+            return View(orders);
         }
 
         public IActionResult OrderDetails(string orderId)
         {
-            return View();
+            IGetOrderedDetailsVM getOrderedDetailsVM;
+
+            using (var scope = ContainerConfig.Configure().BeginLifetimeScope())
+            {
+                getOrderedDetailsVM = scope.Resolve<IGetOrderedDetailsVM>();
+            }
+
+            return View(getOrderedDetailsVM.Get(orderId));
+        }
+
+        public IActionResult ConfirmOrder(string orderId)
+        {
+            ISetOrderStatusAsConfirmed setOrderStatusAsConfirmed;
+
+            using (var scope = ContainerConfig.Configure().BeginLifetimeScope())
+            {
+                setOrderStatusAsConfirmed = scope.Resolve<ISetOrderStatusAsConfirmed>();
+            }
+
+            if (!setOrderStatusAsConfirmed.Update(orderId))
+            {
+                return View(new ErrorMessage() { ErrorMess = setOrderStatusAsConfirmed.ErrorMessage });
+            }
+
+            return View(new ErrorMessage() { ErrorMess = "Order has been confirmed successfully." });
+        }
+
+        [HttpGet]
+        public IActionResult ManageOrderProducts(string orderId)
+        {
+            ILoadDataToManageOrderProd loadDataToManageOrderProd;
+
+            using (var scope = ContainerConfig.Configure().BeginLifetimeScope())
+            {
+                loadDataToManageOrderProd = scope.Resolve<ILoadDataToManageOrderProd>();
+            }
+
+            var input = loadDataToManageOrderProd.Load(orderId);
+
+            return View(input);
+        }
+
+        [HttpPost]
+        public IActionResult ManageOrderProducts(List<ManageOrderProdVM> input)
+        {
+            IProcessManageOrderProducts processManageOrderProducts;
+
+            using (var scope = ContainerConfig.Configure().BeginLifetimeScope())
+            {
+                processManageOrderProducts = scope.Resolve<IProcessManageOrderProducts>();
+            }
+
+            processManageOrderProducts.Process(input, input[0].OrderId);
+
+            return RedirectToAction("OrderDetails", new { orderId = input[0].OrderId.ToString() });
         }
     }
 }

@@ -28,6 +28,7 @@ namespace DatabaseModule
         public virtual DbSet<WarehouseChangesModel> WarehouseChangesModels { get; set; }
         public virtual DbSet<OrderModel> OrderModels { get; set; }
         public virtual DbSet<ShopWebAccountTokensModel> ShopWebAccountTokens { get; set; }
+        public virtual DbSet<OrderProductModel> OrderProductModels { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -218,6 +219,27 @@ namespace DatabaseModule
                     .WithMany(d => d.ShopWebAccountTokensModels)
                     .HasForeignKey(x => x.ShopId)
                     .HasConstraintName("FK__ShopWebAc__Shop___29221CFB");
+            });
+
+            modelBuilder.Entity<OrderProductModel>(entity =>
+            {
+                entity.ToTable("OrderProduct", "cr");
+
+                entity.Property(e => e.ProductId).HasColumnName("Product_Id");
+
+                entity.Property(e => e.OrderId).HasColumnName("Order_Id");
+
+                entity.HasKey(e => new { e.OrderId, e.ProductId });
+
+                entity.HasOne(e => e.OrderModel)
+                    .WithMany(d => d.OrderProductModels)
+                    .HasForeignKey(x => x.OrderId)
+                    .HasConstraintName("FK__OrderProd__Order__797309D9");
+
+                entity.HasOne(e => e.ProductBasicsModel)
+                    .WithMany(d => d.OrderProductModels)
+                    .HasForeignKey(x => x.ProductId)
+                    .HasConstraintName("FK__OrderProd__Produ__7A672E12");
             });
 
             OnModelCreatingPartial(modelBuilder);

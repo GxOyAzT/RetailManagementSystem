@@ -1,1 +1,62 @@
-﻿
+﻿@model OrderDetailsViewModel
+
+<div>
+    <input hidden asp-for="OrderModel.Id">
+    <label>ID: </label>
+    <input type="text" readonly asp-for="OrderModel.OrderUqName">
+    <br />
+    <label>Creation date: </label>
+    <input readonly asp-for="OrderModel.CreationDate">
+    <input hidden asp-for="OrderModel.IsConfirmed">
+    <input hidden asp-for="OrderModel.ConfirmationDate">
+    <br />
+    @if (Model.OrderModel.IsConfirmed)
+    {
+        <label>Order is confirmed.</label>
+        <br />
+        <label>Confirmation date: </label>
+        <input readonly value="Order is confirmed.">
+    }
+    else
+    {
+        <input type="text" readonly value="Order is not confirmed.">
+        <a asp-action="ManageOrderProducts" asp-route-orderId="@(Model.OrderModel.Id.ToString())">Manage</a>
+        <br/>
+        <a asp-action="ConfirmOrder" asp-route-orderId="@(Model.OrderModel.Id.ToString())">Confirm</a>
+    }
+
+    <br /><br /><br />
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Producer</th>
+                <th>Retail Price</th>
+                <th>Box Qua</th>
+                <th>Box Price</th>
+                <th>Order Qua</th>
+                <th>Price General</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model.OrderProductModels)
+            {
+                <tr>
+                    <td>@(item.ProductBasicsModel.Name)</td>
+                    <td>@(item.ProductBasicsModel.ProducerModel.CompanyName)</td>
+                    <td>@(item.ProductBasicsModel.ProductPriceModel.Price.ToString("C"))</td>
+                    <td>@(item.ProductBasicsModel.ProductStorageModel.QuantityInBox)</td>
+                    <td>@((item.ProductBasicsModel.ProductPriceModel.Price * item.ProductBasicsModel.ProductStorageModel.QuantityInBox).ToString("C"))</td>
+                    <td>@(item.Quantity)</td>
+                    <td>@((item.ProductBasicsModel.ProductPriceModel.Price * item.ProductBasicsModel.ProductStorageModel.QuantityInBox * item.Quantity).ToString("C"))</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+    <br />
+    <h3>Total: @(Model.TotalOrderCost)</h3>
+</div>
