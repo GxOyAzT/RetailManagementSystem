@@ -29,6 +29,7 @@ namespace DatabaseModule
         public virtual DbSet<OrderModel> OrderModels { get; set; }
         public virtual DbSet<ShopWebAccountTokensModel> ShopWebAccountTokens { get; set; }
         public virtual DbSet<OrderProductModel> OrderProductModels { get; set; }
+        public virtual DbSet<SupplyModel> SupplyModels { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -240,6 +241,27 @@ namespace DatabaseModule
                     .WithMany(d => d.OrderProductModels)
                     .HasForeignKey(x => x.ProductId)
                     .HasConstraintName("FK__OrderProd__Produ__7A672E12");
+            });
+
+            modelBuilder.Entity<SupplyModel>(entity =>
+            {
+                entity.ToTable("Supply", "cr");
+
+                entity.Property(e => e.TruckId).HasColumnName("Truck_Id");
+
+                entity.Property(e => e.OrderId).HasColumnName("Order_Id");
+
+                entity.HasKey(e => e.Id);
+
+                entity.HasOne(e => e.TruckModel)
+                    .WithMany(d => d.SupplyModels)
+                    .HasForeignKey(x => x.TruckId)
+                    .HasConstraintName("FK__Supply__Truck_Id__09A971A2");
+
+                entity.HasOne(e => e.OrderModel)
+                    .WithMany(d => d.SupplyModels)
+                    .HasForeignKey(x => x.OrderId)
+                    .HasConstraintName("FK__Supply__Order_Id__08B54D69");
             });
 
             OnModelCreatingPartial(modelBuilder);

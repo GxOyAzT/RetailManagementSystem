@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SupplyManagementUI.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,26 @@ namespace SupplyManagementUI
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Click_Orders(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new OrdersListPage(this.MainFrame);
+        }
+
+        private void Click_Exit(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Click_Minimise(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Click_RestDown(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -7,6 +7,35 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left">
+                <Button Width="38" Height="38" Click="Click_Orders" Content="Orders" Margin="1"/>
+            </StackPanel>
+
+            <Grid Grid.Column="1">
+                <TextBlock x:Name="Messages" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+
+            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Left">
+                <Button Width="38" Height="38"  Content="Min" Click="Click_Minimise" Margin="1"/>
+                <Button Width="38" Height="38"  Content="Down" Click="Click_RestDown" Margin="1"/>
+                <Button Width="38" Height="38"  Content="Exit" Click="Click_Exit" Margin="1"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
+        </Grid>
     </Grid>
 </Window>

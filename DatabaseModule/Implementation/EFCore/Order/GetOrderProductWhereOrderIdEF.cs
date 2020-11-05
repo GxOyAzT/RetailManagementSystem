@@ -18,6 +18,7 @@ namespace DatabaseModule
                     .Include(e => e.ProductBasicsModel.ProductAvaliabilityModel)
                     .Include(e => e.ProductBasicsModel.ProductPriceModel)
                     .Include(e => e.ProductBasicsModel.ProductStorageModel)
+                    .Include(e => e.ProductBasicsModel.WarehouseModel)
                     .Where(e => e.OrderId == OrderId).ToList();
             }
         }

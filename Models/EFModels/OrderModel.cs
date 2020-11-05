@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models
 {
@@ -12,7 +13,11 @@ namespace Models
         public bool IsConfirmed { get; set; }
         public DateTime? ConfirmationDate { get; set; }
 
+        [NotMapped]
+        public string ConfirmationDateString { get => ConfirmationDate == null ? "NOT CONFIRMED" : ConfirmationDate.Value.ToString("yyyy-MM-dd"); }
+
         public virtual ShopModel ShopModel { get; set; }
         public virtual ICollection<OrderProductModel> OrderProductModels { get; set; }
+        public virtual ICollection<SupplyModel> SupplyModels { get; set; }
     }
 }
