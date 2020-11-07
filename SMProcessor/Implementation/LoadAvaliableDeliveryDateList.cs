@@ -21,7 +21,7 @@ namespace SMProcessor
 
             var supplyList = getAllSupplyForNextThirtyDays.Get().Where(e => e.TruckId == truckId);
 
-            for (DateTime i = DateTime.Now; i <= DateTime.Now.AddDays(30); i = i.AddDays(1))
+            for (DateTime i = DateTime.Now.Date; i <= DateTime.Now.Date.AddDays(30); i = i.AddDays(1))
                 if (supplyList.FirstOrDefault(e => e.DateOfDelivery == i) == null)
                     output.Add(i);
 

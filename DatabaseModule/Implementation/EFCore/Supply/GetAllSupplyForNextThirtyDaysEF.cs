@@ -13,7 +13,7 @@ namespace DatabaseModule
             using (var db = new ShopContext())
             {
                 return db.SupplyModels
-                    .Where(e => e.DateOfDelivery >= DateTime.Now && e.DateOfDelivery <= DateTime.Now.AddDays(30))
+                    .Where(e => e.DateOfDelivery >= DateTime.Now.AddDays(-1) && e.DateOfDelivery <= DateTime.Now.AddDays(31))
                     .ToList();
             }
         }
