@@ -5,6 +5,6 @@ namespace SMProcessor
 {
     public interface ICreateSupplyModelInstance
     {
-        SupplyModel Create(Guid truckId, Guid orderId, DateTime dateOfDelivery);
+        SupplyModel Create(Guid truckId, Guid orderId, Guid shopId, DateTime dateOfDelivery);
     }
 }

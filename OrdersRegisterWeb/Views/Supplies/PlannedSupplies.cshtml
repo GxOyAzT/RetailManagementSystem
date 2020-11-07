@@ -1,0 +1,29 @@
+﻿@model List<SupplyModel>
+
+@{ 
+    ViewBag.Title = "Planned Supplies";
+}
+
+<h1>Supplies/PlannedSupplies</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Confirmation Date</th>
+            <th>Delivery Date</th>
+            <th>Products list</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@(item.SupplyUqName)</td>
+                <td>@(item.DateOfConfirmation.ToString("dd-MM-yyyy"))</td>
+                <td>@(item.DateOfDelivery.ToString("dd-MM-yyyy"))</td>
+                <td><a asp-action="SupplyDetails" asp-route-supplyId="@(item.Id)">See</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using DatabaseModule;
 using Models;
 using SMProcessor;
 using System;
@@ -20,16 +21,19 @@ namespace SupplyManagementUI.Pages
     public partial class ManageSupplyPage : Page
     {
         private readonly Guid orderId;
+
         private EnumManageSupplyStep Step { get; set; }
+        private Guid shopId { get; set; }
 
         private ManageSupplyProductsPage ManageSupplyProductsPage { get; set; }
         private ManageSupplyTruckDate ManageSupplyTruckDate { get; set; }
         private ManageSupplySummaryPage ManageSupplySummaryPage { get; set; }
 
-        public ManageSupplyPage(Guid orderId)
+        public ManageSupplyPage(Guid orderId, Guid shopId)
         {
             InitializeComponent();
             this.orderId = orderId;
+            this.shopId = shopId;
             SetStep(EnumManageSupplyStep.Products);
             SupplyMainFrame.Content = ManageSupplyProductsPage = new ManageSupplyProductsPage(orderId);
         }
@@ -109,7 +113,7 @@ namespace SupplyManagementUI.Pages
                     convertOrderProductListToSupplyProductList = scope.Resolve<IConvertOrderProductListToSupplyProductList>();
                 }
 
-                var supplyModel = createSupplyModelInstance.Create(ManageSupplyTruckDate.SelectedTruck.Id, orderId, ManageSupplyTruckDate.SelectedDeliveryDate.Value);
+                var supplyModel = createSupplyModelInstance.Create(ManageSupplyTruckDate.SelectedTruck.Id, orderId, shopId, ManageSupplyTruckDate.SelectedDeliveryDate.Value);
 
                 SupplyMainFrame.Content = ManageSupplySummaryPage = new ManageSupplySummaryPage(supplyModel, convertOrderProductListToSupplyProductList.Convert(ManageSupplyProductsPage.OrderProductVMs.Where(e => e.AcceptedQuantity > 0).ToList(), supplyModel.Id)); ;
 

@@ -22,6 +22,9 @@ namespace Models
             if (AcceptedQuantity + 1 > Quantity)
                 return;
 
+            if (AcceptedQuantity + 1 > ProductBasicsModel.WarehouseModel.ActualQuantity)
+                return;
+
             AcceptedQuantity++;
         }
 

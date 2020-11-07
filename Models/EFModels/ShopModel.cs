@@ -12,5 +12,6 @@ namespace Models
 
         public virtual ICollection<OrderModel> OrderModels { get; set; }
         public virtual ICollection<ShopWebAccountTokensModel> ShopWebAccountTokensModels { get; set; }
+        public virtual ICollection<SupplyModel> SupplyModels { get; set; }
     }
 }

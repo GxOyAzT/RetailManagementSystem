@@ -94,7 +94,7 @@ namespace SupplyManagementUI.Pages
                 return;
             }
 
-            MainFrame.Content = new ManageSupplyPage(OrderModels[LbOrders.SelectedIndex].Id);
+            MainFrame.Content = new ManageSupplyPage(OrderModels[LbOrders.SelectedIndex].Id, OrderModels[LbOrders.SelectedIndex].ShopId);
         }
         #endregion
     }

@@ -40,6 +40,8 @@ namespace OrdersRegisterWeb
 
             builder.RegisterType<ProcessManageOrderProducts>().As<IProcessManageOrderProducts>();
 
+            builder.RegisterType<GetAllSupplyWhereShopIdAndNotConfEF>().As<IGetAllSupplyWhereShopIdAndNotConf>();
+
             return builder.Build();
         }
     }

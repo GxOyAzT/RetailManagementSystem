@@ -252,6 +252,8 @@ namespace DatabaseModule
 
                 entity.Property(e => e.OrderId).HasColumnName("Order_Id");
 
+                entity.Property(e => e.ShopId).HasColumnName("Shop_Id");
+
                 entity.HasKey(e => e.Id);
 
                 entity.HasOne(e => e.TruckModel)
@@ -263,6 +265,11 @@ namespace DatabaseModule
                     .WithMany(d => d.SupplyModels)
                     .HasForeignKey(x => x.OrderId)
                     .HasConstraintName("FK__Supply__Order_Id__08B54D69");
+
+                entity.HasOne(e => e.ShopModel)
+                    .WithMany(d => d.SupplyModels)
+                    .HasForeignKey(x => x.ShopId)
+                    .HasConstraintName("FK__Supply__Shop_Id__3B40CD36");
             });
 
             modelBuilder.Entity<SupplyProductModel>(entity =>

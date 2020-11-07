@@ -14,13 +14,14 @@ namespace SMProcessor
             this.returnUqSupplyName = returnUqSupplyName;
         }
 
-        public SupplyModel Create(Guid truckId, Guid orderId, DateTime dateOfDelivery)
+        public SupplyModel Create(Guid truckId, Guid orderId, Guid shopId, DateTime dateOfDelivery)
         {
             return new SupplyModel()
             {
                 Id = Guid.NewGuid(),
                 TruckId = truckId,
                 OrderId = orderId,
+                ShopId = shopId,
                 DateOfConfirmation = DateTime.Now,
                 DateOfDelivery = dateOfDelivery,
                 SupplyUqName = returnUqSupplyName.Return(),
