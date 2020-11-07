@@ -8,8 +8,4 @@
     <ProjectReference Include="..\DatabaseModule\DatabaseModule.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Implemantation\Supply\" />
-  </ItemGroup>
-
 </Project>

@@ -94,5 +94,22 @@ namespace OrdersRegisterWeb.Controllers
 
             return RedirectToAction("OrderDetails", new { orderId = input[0].OrderId.ToString() });
         }
+
+        [HttpGet]
+        public IActionResult CreateNewBlankOrder()
+        {
+            var result = _userManager.GetUserName(HttpContext.User);
+
+            IInsertNewBlankOrder insertNewBlankOrder;
+
+            using (var scope = ContainerConfig.Configure().BeginLifetimeScope())
+            {
+                insertNewBlankOrder = scope.Resolve<IInsertNewBlankOrder>();
+            }
+
+            insertNewBlankOrder.Insert(Guid.Parse(result));
+
+            return RedirectToAction("AllOrders");
+        }
     }
 }

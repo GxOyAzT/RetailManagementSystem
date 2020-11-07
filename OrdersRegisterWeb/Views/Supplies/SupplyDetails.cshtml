@@ -1,6 +1,45 @@
-﻿@{ 
+﻿@model SupplyDetailsVM
+
+@{
     ViewBag.Title = "SupplyDetails";
 }
 
 <h1>Supplies/SupplyDetails</h1>
 
+@if (Model != null)
+{
+    <p>Supply id: @(Model.SupplyModel.SupplyUqName)</p>
+    <p>Oder id: @(Model.SupplyModel.OrderModel.OrderUqName)</p>
+    <p>Total price: @(Model.TotalPrice)</p>
+
+    <br />
+    <br />
+
+    <table>
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Barecode</td>
+                <td>Box Price</td>
+                <td>Quantity</td>
+                <td>TotalPrice</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.SupplyProductModels)
+            {
+                <tr>
+                    <td>@(item.ProductBasicsModel.Name)</td>
+                    <td>@(item.ProductBasicsModel.Barecode)</td>
+                    <td>@(item.ProductBasicsModel.ProductStorageModel.QuantityInBox) * @(Math.Round(item.ProductBasicsModel.ProductPriceModel.Price, 2)) = @(Math.Round(item.ProductBasicsModel.ProductPriceModel.Price * item.ProductBasicsModel.ProductStorageModel.QuantityInBox, 2))</td>
+                    <td>@(item.Quantity)</td>
+                    <td>@(Math.Round(item.ProductBasicsModel.ProductPriceModel.Price * item.ProductBasicsModel.ProductStorageModel.QuantityInBox, 2)) * @(item.Quantity) = @(Math.Round(item.ProductBasicsModel.ProductPriceModel.Price * item.ProductBasicsModel.ProductStorageModel.QuantityInBox * item.Quantity, 2))</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Cannot find supply on this id.</p>
+}

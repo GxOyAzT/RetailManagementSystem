@@ -3,6 +3,7 @@ using DatabaseModule;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using ORProcessor;
 using System;
 
 namespace OrdersRegisterWeb.Controllers
@@ -36,8 +37,14 @@ namespace OrdersRegisterWeb.Controllers
         [HttpGet]
         public IActionResult SupplyDetails(string supplyId)
         {
+            IGetVmForSupplyDetails getVmForSupplyDetails;
 
-            return View();
+            using (var scope = ContainerConfig.Configure().BeginLifetimeScope())
+            {
+                getVmForSupplyDetails = scope.Resolve<IGetVmForSupplyDetails>();
+            }
+
+            return View(getVmForSupplyDetails.Get(supplyId));
         }
     }
 }

@@ -42,6 +42,18 @@ namespace OrdersRegisterWeb
 
             builder.RegisterType<GetAllSupplyWhereShopIdAndNotConfEF>().As<IGetAllSupplyWhereShopIdAndNotConf>();
 
+            builder.RegisterType<GetAllSupplyProductsWhereSupIdEF>().As<IGetAllSupplyProductsWhereSupId>();
+
+            builder.RegisterType<GetSupplyWhereIdEF>().As<IGetSupplyWhereId>();
+
+            builder.RegisterType<GetVmForSupplyDetails>().As<IGetVmForSupplyDetails>();
+
+            builder.RegisterType<InsertBlankOrderEF>().As<IInsertBlankOrder>();
+
+            builder.RegisterType<GenerateRandomOrderName>().As<IGenerateRandomOrderName>();
+
+            builder.RegisterType<InsertNewBlankOrder>().As<IInsertNewBlankOrder>();
+
             return builder.Build();
         }
     }
