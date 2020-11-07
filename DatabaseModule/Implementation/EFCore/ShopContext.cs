@@ -30,6 +30,7 @@ namespace DatabaseModule
         public virtual DbSet<ShopWebAccountTokensModel> ShopWebAccountTokens { get; set; }
         public virtual DbSet<OrderProductModel> OrderProductModels { get; set; }
         public virtual DbSet<SupplyModel> SupplyModels { get; set; }
+        public virtual DbSet<SupplyProductModel> SupplyProductModels { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -262,6 +263,27 @@ namespace DatabaseModule
                     .WithMany(d => d.SupplyModels)
                     .HasForeignKey(x => x.OrderId)
                     .HasConstraintName("FK__Supply__Order_Id__08B54D69");
+            });
+
+            modelBuilder.Entity<SupplyProductModel>(entity =>
+            {
+                entity.ToTable("SupplyProduct", "cr");
+
+                entity.HasKey(e => new { e.SupplyId, e.ProductId });
+
+                entity.Property(e => e.SupplyId).HasColumnName("Supply_Id");
+
+                entity.Property(e => e.ProductId).HasColumnName("Product_Id");
+
+                entity.HasOne(e => e.SupplyModel)
+                    .WithMany(d => d.SupplyProductModels)
+                    .HasForeignKey(x => x.SupplyId)
+                    .HasConstraintName("FK__SupplyPro__Suppl__0C85DE4D");
+
+                entity.HasOne(e => e.ProductBasicsModel)
+                    .WithMany(d => d.SupplyProductModels)
+                    .HasForeignKey(x => x.ProductId)
+                    .HasConstraintName("FK__SupplyPro__Produ__0D7A0286");
             });
 
             OnModelCreatingPartial(modelBuilder);

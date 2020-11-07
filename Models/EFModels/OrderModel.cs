@@ -12,6 +12,7 @@ namespace Models
         public Guid ShopId { get; set; }
         public bool IsConfirmed { get; set; }
         public DateTime? ConfirmationDate { get; set; }
+        public bool IsSupplyConfirmed { get; set; }
 
         [NotMapped]
         public string ConfirmationDateString { get => ConfirmationDate == null ? "NOT CONFIRMED" : ConfirmationDate.Value.ToString("yyyy-MM-dd"); }

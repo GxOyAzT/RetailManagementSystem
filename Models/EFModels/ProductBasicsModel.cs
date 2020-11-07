@@ -18,5 +18,6 @@ namespace Models
         public virtual WarehouseModel WarehouseModel { get; set; }
         public virtual ICollection<WarehouseChangesModel> WarehouseChangesModels { get; set; }
         public virtual ICollection<OrderProductModel> OrderProductModels { get; set; }
+        public virtual ICollection<SupplyProductModel> SupplyProductModels { get; set; }
     }
 }

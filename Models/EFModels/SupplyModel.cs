@@ -16,5 +16,6 @@ namespace Models
 
         public virtual TruckModel TruckModel { get; set; }
         public virtual OrderModel OrderModel { get; set; }
+        public virtual ICollection<SupplyProductModel> SupplyProductModels { get; set; }
     }
 }

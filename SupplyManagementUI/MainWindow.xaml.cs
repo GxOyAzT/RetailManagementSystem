@@ -16,14 +16,17 @@ using System.Windows.Shapes;
 
 namespace SupplyManagementUI
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
+            MainFrameInstance.MainFrame = MainFrame;
+        }
+
+        public void SetBlankMainFrame()
+        {
+            MainFrame.Content = null;
         }
 
         private void Click_Orders(object sender, RoutedEventArgs e)

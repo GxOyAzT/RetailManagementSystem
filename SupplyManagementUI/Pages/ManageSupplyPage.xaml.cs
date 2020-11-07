@@ -1,4 +1,6 @@
-﻿using Models;
+﻿using Autofac;
+using Models;
+using SMProcessor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -86,6 +88,8 @@ namespace SupplyManagementUI.Pages
                 SupplyMainFrame.Content = ManageSupplyTruckDate = new ManageSupplyTruckDate(ManageSupplyProductsPage.OrderProductVMs.Sum(e => e.AcceptedQuantity * e.ProductBasicsModel.ProductStorageModel.QuantityInBox * e.ProductBasicsModel.ProductStorageModel.ProductWeight));
 
                 SetStep(EnumManageSupplyStep.Details);
+
+                return;
             }
 
             if (Step == EnumManageSupplyStep.Details)
@@ -96,9 +100,22 @@ namespace SupplyManagementUI.Pages
                     return;
                 }
 
-                SupplyMainFrame.Content = ManageSupplySummaryPage = new ManageSupplySummaryPage();
+                ICreateSupplyModelInstance createSupplyModelInstance;
+                IConvertOrderProductListToSupplyProductList convertOrderProductListToSupplyProductList;
+
+                using (var scope = ContainerConfig.Configure().BeginLifetimeScope())
+                {
+                    createSupplyModelInstance = scope.Resolve<ICreateSupplyModelInstance>();
+                    convertOrderProductListToSupplyProductList = scope.Resolve<IConvertOrderProductListToSupplyProductList>();
+                }
+
+                var supplyModel = createSupplyModelInstance.Create(ManageSupplyTruckDate.SelectedTruck.Id, orderId, ManageSupplyTruckDate.SelectedDeliveryDate.Value);
+
+                SupplyMainFrame.Content = ManageSupplySummaryPage = new ManageSupplySummaryPage(supplyModel, convertOrderProductListToSupplyProductList.Convert(ManageSupplyProductsPage.OrderProductVMs.Where(e => e.AcceptedQuantity > 0).ToList(), supplyModel.Id)); ;
 
                 SetStep(EnumManageSupplyStep.Summary);
+
+                return;
             }
         }
         #endregion

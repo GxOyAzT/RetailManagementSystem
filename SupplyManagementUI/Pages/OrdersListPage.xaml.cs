@@ -3,6 +3,7 @@ using Models;
 using SMProcessor;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -40,7 +41,7 @@ namespace SupplyManagementUI.Pages
                 loadConfirmedOrders = scope.Resolve<ILoadConfirmedOrders>();
             }
 
-            OrderModels = loadConfirmedOrders.Load();
+            OrderModels = loadConfirmedOrders.Load().Where(e => !e.IsSupplyConfirmed).ToList();
         }
 
         private void LoadOrderProductModels()

@@ -26,6 +26,28 @@ namespace SupplyManagementUI
 
             builder.RegisterType<LoadAvaliableDeliveryDateList>().As<ILoadAvaliableDeliveryDateList>();
 
+            builder.RegisterType<GetAllSupplyNamesWhereNotConfirmedEF>().As<IGetAllSupplyNamesWhereNotConfirmed>();
+
+            builder.RegisterType<ReturnUqSupplyName>().As<IReturnUqSupplyName>();
+
+            builder.RegisterType<GenerateSupplyUqName>().As<IGenerateSupplyUqName>();
+
+            builder.RegisterType<CreateSupplyModelInstance>().As<ICreateSupplyModelInstance>();
+
+            builder.RegisterType<GetTruckWhereIdEF>().As<IGetTruckWhereId>();
+
+            builder.RegisterType<GetOrderWhereIdEF>().As<IGetOrderWhereId>();
+
+            builder.RegisterType<ConvertOrderProductListToSupplyProductList>().As<IConvertOrderProductListToSupplyProductList>();
+
+            builder.RegisterType<InsertSupplyEF>().As<IInsertSupply>();
+
+            builder.RegisterType<InsertSupplyProductListEF>().As<IInsertSupplyProductList>();
+
+            builder.RegisterType<InsertSupplyProcess>().As<IInsertSupplyProcess>();
+
+            builder.RegisterType<UpdateOrderSupplyAsConfirmedEF>().As<IUpdateOrderSupplyAsConfirmed>();
+
             return builder.Build();
         }
     }

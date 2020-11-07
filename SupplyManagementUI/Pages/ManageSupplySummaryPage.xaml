@@ -9,6 +9,37 @@
       Title="ManageSupplySummaryPage">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <StackPanel>
+                <TextBlock x:Name="TbSupplyName"/>
+                <TextBlock x:Name="TbTruckName"/>
+                <TextBlock x:Name="TbOrderName"/>
+                <TextBlock x:Name="TbDateOfDelivery"/>
+                <Button Click="Click_Confirm">Confirm</Button>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <ListBox x:Name="LbProducts" ItemsSource="{Binding SupplyProductModel}" Margin="2">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="{Binding ProductBasicsModel.Name}"/>
+                            <TextBlock Grid.Column="1" Text="{Binding Quantity}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
     </Grid>
 </Page>
