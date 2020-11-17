@@ -1,0 +1,390 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Quicksand";
+}
+
+.RightContent {
+    position: relative;
+    height: calc(100% - 20px);
+    width: calc(100% - 270px);
+    margin: 10px;
+    float: left;
+    background: white;
+}
+
+.LeftBlank {
+    position: relative;
+    height: 100%;
+    width: 250px;
+    float: left;
+    background: transparent;
+}
+
+.LeftNavigationBar{
+    position: fixed;
+    height: 100vh;
+    width: 250px;
+    background: #1e1e1e;
+}
+
+#loginListMainFrame {
+    color: rgb(80, 80, 77);
+    position: absolute;
+    height: 70vh;
+    width: 70vw;
+    background: transparent;
+    margin: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 700px;
+    font-family: "Quicksand";
+    font-size: 30px;
+    text-align: center;
+}
+
+.loginList {
+    position: relative;
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 70%;
+    width: 100%;
+}
+
+.loginList > h1 {
+    position: sticky;
+    top: 0;
+    background: white;
+    display: block;
+}
+
+.loginListItem {
+    text-decoration: none;
+    color: rgb(80, 80, 77);
+    display: block;
+    margin: 5px 20px 5px 20px;
+    height: 50px;
+    border: 3px solid rgb(80, 80, 77);
+    border-radius: 5px;
+    font-size: 28px;
+    transition: font-size 0.5s;
+    transition: height 0.5s;
+    transition: margin 0.5s;
+}
+
+.loginListItemText {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.loginList::-webkit-scrollbar {
+    display: none;
+}
+
+.loginListItem:hover {
+    height: 56px;
+    margin: 7px;
+    font-size: 35px;
+}
+
+.loginlistitem:active {
+    background: rgb(80, 80, 77);
+    color: white;
+}
+
+
+
+.ListManageOrderProduct {
+    position: relative;
+    width: 100%;
+    margin: 10px;
+    background: transparent;
+    float: left;
+}
+
+
+
+.ListManageOrderProductItem {
+    position: relative;
+    height: 50px;
+    width: 96%;
+    background: transparent;
+    margin: auto;
+    margin-top: 10px;
+    border: rgb(80, 80, 77) solid 2px;
+    border-radius: 10px;
+}
+
+.LMOPIProducerProductName {
+    position: relative;
+    background: transparent;
+    margin-left: 10px;
+    width: calc(20% - 10px);
+    height: 100%;
+    display: block;
+    font-size: 17px;
+    float: left;
+}
+
+.LMOPIProducer {
+    position: absolute;
+    display: block;
+    text-align: left;
+    background: transparent;
+    top: 5%;
+}
+
+.LMOPIProductName {
+    position: absolute;
+    display: block;
+    background: transparent;
+    bottom: 5%;
+}
+
+.LMOPIBarecode {
+    position: relative;
+    background: transparent;
+    width: 20%;
+    display: block;
+    font-size: 30px;
+    float: left;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.LMOPIBarecode > label {
+    display: block;
+}
+
+.ListManageOrderProduct::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+}
+
+.LMOPIRetialBoxPrice {
+    position: relative;
+    background: transparent;
+    width: 10%;
+    height: 100%;
+    display: block;
+    font-size: 17px;
+    float: left;
+}
+
+.LMOPIRetailPrice {
+    position: absolute;
+    display: block;
+    background: transparent;
+    top: 5%;
+}
+
+.LMOPIBoxPrice {
+    font-size: 19px;
+    position: absolute;
+    display: block;
+    background: transparent;
+    bottom: 5%;
+}
+
+.Quantity {
+    position: relative;
+    background: transparent;
+    width: 20%;
+    height: 100%;
+    display: block;
+    font-size: 17px;
+    float: left;
+}
+
+.QuantityButtonIncrement {
+    position: relative;
+    float: left;
+    background: transparent;
+    width: 50px;
+    height: 50px;
+}
+
+.QuantityInput {
+    position: relative;
+    float: left;
+    background: transparent;
+    width: 100px;
+    height: 50px;
+}
+
+.QuantityButtonDecrement {
+    position: relative;
+    float: left;
+    background: transparent;
+    width: 50px;
+    height: 50px;
+    border: black solid 2px;
+    height: 34px;
+    width: 34px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 100%;
+}
+
+.QuantityButtonDecrement > label {
+    position: relative;
+    display: block;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.QuantityButtonIncrement {
+    position: relative;
+    float: left;
+    background: transparent;
+    width: 50px;
+    height: 50px;
+    border: black solid 2px;
+    height: 34px;
+    width: 34px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 100%;
+}
+
+.LabelInQuantityLabel {
+    position: relative;
+    border: black solid 2px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 70%;
+    text-align: center;
+    font-size: 30px;
+    border-radius: 10px;
+}
+
+.QuantityButtonIncrement > label {
+    position: relative;
+    display: block;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.LMOPITotalPrice {
+    width: 20%;
+    position: relative;
+    background: transparent;
+    display: block;
+    float: left;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+}
+
+.LMOPITotalPrice > input {
+    position: relative;
+    background: transparent;
+    border: none;
+    font-size: 30px;
+    text-align: right;
+}
+
+.QuantityButtonIncrement > button {
+    height: 100%;
+    width: 100%;
+    border-radius: 100%;
+    border: black solid 2px;
+    background-color: transparent;
+}
+
+.QuantityButtonIncrement > button:active{
+    border-style: outset;
+}
+
+/* ch */
+.LMOPGeneralData {
+    position: sticky;
+    top: 10;
+    height: 60px;
+    width: 96%;
+    margin: auto;
+    z-index: 2;
+}
+
+/* ch */
+.LMOPGDOrderName {
+    float: right;
+    position: relative;
+    height: 50px;
+    top: 5px;
+    width: 180px;
+    border: rgb(80, 80, 77) solid 2px;
+    border-radius: 10px;
+}
+
+    /* ch */
+    .LMOPGDOrderName > img {
+        display: block;
+        height: 42px;
+        margin: 2px;
+        float: left;
+    }
+
+    /* ch */
+    .LMOPGDOrderName > h1 {
+        position: relative;
+        display: block;
+        font-size: 23px;
+        top: 50%;
+        transform: translateY(-50%);
+        text-align: center;
+        font-weight: 300;
+        color: rgb(80, 80, 77);
+    }
+
+/* ch */
+.LMOPGDTotalPrice {
+    margin-left: 30px;
+    margin-right: 30px;
+    float: right;
+    position: relative;
+    height: 50px;
+    top: 5px;
+    width: 180px;
+    border: rgb(80, 80, 77) solid 2px;
+    border-radius: 10px;
+}
+
+/* ch */
+.LMOPGDTotalPrice > input {
+    position: relative;
+    font-size: 23px;
+    max-width: 120px;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: right;
+    background: transparent;
+    border: none;
+    color: rgb(80, 80, 77);
+}
+
+/* ch */
+.LMOPGDTotalPrice > img {
+    display: block;
+    height: 42px;
+    margin: 2px;
+    float: left;
+}
+
+/* ch */
+.LMOPSybmitButton {
+    float: right;
+    position: relative;
+    height: 50px;
+    top: 5px;
+    width: 50px;
+    background: green;
+    border: rgb(80, 80, 77) solid 2px;
+    border-radius: 100%;
+}

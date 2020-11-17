@@ -1,0 +1,99 @@
+﻿* {
+    padding: 0;
+    margin: 0;
+}
+
+#RightNavBar {
+    width: 300px;
+    background-color: #1e1e1e;
+    height: 100vh;
+    position: absolute;
+    position: fixed;
+}
+
+#Content {
+    margin-left: 300px;
+}
+
+.navigationButton {
+    color: white;
+    text-decoration: none;
+}
+
+.loginBackgroundFirst {
+    height: 100vh;
+    width: 100vw;
+    background: #086788;
+    position: relative;
+}
+
+.loginBackgroundSecond {
+    height: 16em;
+    width: 16em;
+    background: #fff1d0;
+    border-radius: 100%;
+    position: absolute;
+    top: -130px;
+    left: -130px;
+    z-index: 0;
+}
+
+.loginMainFrame > h1 {
+    font-family: "Roboto";
+    font-weight: 300;
+    position: relative;
+    top: 20px;
+    text-align: center;
+}
+
+.loginBackgroundFirst > img {
+    height: 100px;
+    position: absolute;
+    z-index: 2;
+}
+
+.pointOfSalesList {
+    overflow: auto;
+    background: transparent;
+    height: 70%;
+    position: fixed;
+    max-height: 460px;
+    max-width: 800px;
+    min-height: 230px;
+    min-width: 190px;
+    height: 70%;
+    width: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 50%;
+}
+
+.pointOfSalesListItem {
+    height: 50px;
+    width: 90%;
+    margin: auto;
+    margin-top: 10px;
+    border: 3px solid #049bbd;
+    background: #06aed5;
+    border-radius: 25px;
+    position: relative;
+    display: block;
+}
+
+.pointOfSalesList::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+}
+
+.pointOfSalesListItem > h1 {
+    position: absolute;
+    font-family: Arimo;
+    font-size: 25px;
+    color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.pointOfSalesListItem:hover {
+    background: #086788;
+}
