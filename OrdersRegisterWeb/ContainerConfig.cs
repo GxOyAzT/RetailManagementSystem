@@ -22,7 +22,7 @@ namespace OrdersRegisterWeb
 
             builder.RegisterType<GetAllOrdersEF>().As<IGetAllOrders>();
 
-            builder.RegisterType<GetAllOrdersProcess>().As<IGetAllOrdersProcess>();
+            builder.RegisterType<GetAllNotConfirmedOrdersProcess>().As<IGetAllNotConfirmedOrdersProcess>();
 
             builder.RegisterType<GetOrderDetailsVM>().As<IGetOrderedDetailsVM>();
 
@@ -53,6 +53,12 @@ namespace OrdersRegisterWeb
             builder.RegisterType<GenerateRandomOrderName>().As<IGenerateRandomOrderName>();
 
             builder.RegisterType<InsertNewBlankOrder>().As<IInsertNewBlankOrder>();
+
+            builder.RegisterType<RemoveOrder>().As<IRemoveOrder>();
+
+            builder.RegisterType<GetAllConfirmedOrdersProcess>().As<IGetAllConfirmedOrdersProcess>();
+
+            builder.RegisterType<GetOrderWhereIdEF>().As<IGetOrderWhereId>();
 
             return builder.Build();
         }

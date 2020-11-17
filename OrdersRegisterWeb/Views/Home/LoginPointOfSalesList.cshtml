@@ -1,26 +1,15 @@
-﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@model List<Models.ShopModel>
+﻿@model List<ShopModel>
 
-<h1>Home/LoginPointOfSalesList</h1>
-
-<table>
-    <thead>
-        <tr>
-            <th>City</th>
-            <th>Street</th>
-            <th>LogIn</th>
-        </tr>
-    </thead>
-    <tbody>
+<div id="loginListMainFrame">
+    <h1>Log in</h1>
+    <div style="height: 50px;">
+    </div>
+    <div class="loginList">
         @foreach (var item in Model)
         {
-            <tr>
-                <td>@(item.City)</td>
-                <td>@(item.Street)</td>
-                <td>
-                    <a asp-controller="Home" asp-action="Login" asp-route-shopId="@(item.Id.ToString())">Log In</a>
-                </td>
-            </tr>
+            <a class="loginListItem" asp-action="Login" asp-route-shopId="@(item.Id)">
+                <div class="loginListItemText">@(item.City) @(item.Street)</div>
+            </a>
         }
-    </tbody>
-</table>
+    </div>
+</div>

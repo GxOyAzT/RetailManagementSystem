@@ -8,8 +8,8 @@
     <thead>
         <tr>
             <th>ID</th>
+            <th>Confirmation date</th>
             <th>Detials</th>
-            <th>Remove</th>
         </tr>
     </thead>
     <tbody>
@@ -17,8 +17,8 @@
         {
             <tr>
                 <td>@(item.OrderUqName)</td>
+                <td>@(item.ConfirmationDate.Value.ToString("dd-MM-yyyy"))</td>
                 <td><a asp-action="OrderDetails" asp-route-orderId="@(item.Id.ToString())">See</a></td>
-                <td><a asp-action="DeleteOrder" asp-route-orderId="@(item.Id.ToString())">Delete</a></td>
             </tr>
         }
     </tbody>

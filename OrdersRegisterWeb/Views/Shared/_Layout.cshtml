@@ -4,18 +4,31 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/Styles/stylev2.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>_Layout.cshtml</h1>
-    <div>
-        <div>
-            <a asp-controller="Home" asp-action="LoginPointOfSalesList">Log in</a>
+    <!-- IF USER IS AUTHENTICATE -->
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="LeftNavigationBar">
             <a asp-controller="Orders" asp-action="AllOrders">Orders</a>
+            <a asp-controller="Orders" asp-action="ConfirmedOrders">Confirmed Orders</a>
             <a asp-controller="Supplies" asp-action="PlannedSupplies">Planned Supplies</a>
         </div>
-        <div>
-            @RenderBody()
+        <div style="height: 100vh; width: 100vw; position: relative;">
+            <div class="LeftBlank">
+                
+            </div>
+            <div class="RightContent">
+                @RenderBody()
+            </div>
         </div>
-    </div>
+    }
+    else
+    {
+        @RenderBody()
+    }
 </body>
 </html>

@@ -5,6 +5,6 @@ namespace DatabaseModule
 {
     public interface IGetOrderWhereId
     {
-        OrderModel Get(Guid truckId);
+        OrderModel Get(Guid orderId);
     }
 }

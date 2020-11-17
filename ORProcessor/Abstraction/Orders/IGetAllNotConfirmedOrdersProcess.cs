@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace ORProcessor
 {
-    public interface IGetAllOrdersProcess
+    public interface IGetAllNotConfirmedOrdersProcess
     {
         List<OrderModel> Get(Guid shopId);
     }
