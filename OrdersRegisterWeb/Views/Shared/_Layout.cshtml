@@ -12,19 +12,27 @@
     <!-- IF USER IS AUTHENTICATE -->
     @if (User.Identity.IsAuthenticated)
     {
-        <div class="LeftNavigationBar">
-            <a asp-controller="Orders" asp-action="AllOrders">Orders</a>
-            <a asp-controller="Orders" asp-action="ConfirmedOrders">Confirmed Orders</a>
-            <a asp-controller="Supplies" asp-action="PlannedSupplies">Planned Supplies</a>
+    <div class="LeftNavigationBar">
+        <div class="LNBShop">
+            <label>USER</label>
+            <br />
+            <label>USER</label>
         </div>
-        <div style="height: 100vh; width: 100vw; position: relative;">
-            <div class="LeftBlank">
-                
-            </div>
-            <div class="RightContent">
-                @RenderBody()
-            </div>
+        <a class="LNBLogOutButton" asp-controller="Home" asp-action="LogOut"><img src="~/images/icons/logoutIcon.png" alt="log out"></a>
+        <div class="LNBButtons">
+            <a class="LNBButton" asp-controller="Orders" asp-action="AllOrders"><div>Manage Orders</div></a>
+            <a class="LNBButton" asp-controller="Orders" asp-action="ConfirmedOrders"><div>Confirmed Orders</div></a>
         </div>
+    </div>
+    <div style="height: 100vh; width: 100vw; position: relative;">
+        <div class="LeftBlank">
+
+        </div>
+        <div class="RightContent">
+            @RenderBody()
+        </div>
+    </div>
+    
     }
     else
     {

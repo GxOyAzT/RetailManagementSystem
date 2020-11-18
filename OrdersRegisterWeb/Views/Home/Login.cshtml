@@ -1,15 +1,29 @@
-﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@model OrdersRegisterWeb.LoginViewModel
-
-<h1>Home/Login</h1>
-
-<h3>@(Model.ShopModel.Street)</h3>
+﻿@model OrdersRegisterWeb.LoginViewModel
 
 <form method="post">
     <input type="text" readonly hidden asp-for="ShopModel.Id" />
     <input type="text" readonly hidden asp-for="UserName" />
-    <input type="text" readonly asp-for="ShopModel.City" />
-    <input type="text" readonly asp-for="ShopModel.Street" />
-    <input type="password" asp-for="Password" />
-    <input type="submit" value="Login"/>
+    <input type="text" readonly hidden asp-for="ShopModel.City" />
+    <input type="text" readonly hidden asp-for="ShopModel.Street" />
+    <div id="loginMainFrame">
+        <h1>Log in</h1>
+        <div id="loginShopName">
+            <div id="loginShopNameText">
+                @(Model.ShopModel.City) @(Model.ShopModel.Street)
+            </div>
+        </div>
+
+        <div id="loginPassword">
+            <input id="passwordLabel" type="password" asp-for="Password" />
+        </div>
+
+        <input type="submit" id="loginButtonConfirm" value="Login" />
+
+        @if (Model.IsPasswordCorrect)
+        {
+        <span class="loginIncorrectPassword">
+            Password is incorrect.
+        </span>
+        }
+    </div>
 </form>

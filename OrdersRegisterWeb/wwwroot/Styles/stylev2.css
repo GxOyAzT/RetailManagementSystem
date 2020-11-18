@@ -22,11 +22,12 @@
     background: transparent;
 }
 
-.LeftNavigationBar{
+.LeftNavigationBar {
     position: fixed;
     height: 100vh;
     width: 250px;
-    background: #1e1e1e;
+    background: linear-gradient( 180deg, rgba(30, 30, 30, 1) 80%, rgba(30, 30, 30, 0.9) 100% );
+    z-index: 10;
 }
 
 #loginListMainFrame {
@@ -95,8 +96,6 @@
     color: white;
 }
 
-
-
 .ListManageOrderProduct {
     position: relative;
     width: 100%;
@@ -105,6 +104,97 @@
     float: left;
 }
 
+/*LOGIN STEP 2*/
+
+#loginMainFrame {
+    color: rgb(80, 80, 77);
+    position: absolute;
+    height: 70vh;
+    width: 70vw;
+    max-width: 500px;
+    min-width: 200px;
+    background: transparent;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "Quicksand";
+    font-size: 30px;
+    text-align: center;
+}
+
+#loginMainFrame > h1 {
+    position: relative;
+    top: 0;
+    background: white;
+    display: block;
+}
+
+#loginShopName {
+    position: relative;
+    color: rgb(80, 80, 77);
+    display: block;
+    margin: 50px 20px 5px 20px;
+    height: 50px;
+    border: 3px solid rgb(80, 80, 77);
+    border-radius: 5px;
+    font-size: 28px;
+}
+
+#loginShopNameText {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#loginPassword {
+    position: relative;
+    color: rgb(80, 80, 77);
+    display: block;
+    margin: 5px 20px 5px 20px;
+    height: 50px;
+    border: 3px solid rgb(80, 80, 77);
+    border-radius: 5px;
+    font-size: 28px;
+}
+
+#passwordLabel {
+    position: relative;
+    border: none;
+    background: white;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    background: transparent;
+    font-size: 35px;
+}
+
+#loginButtonConfirm {
+    position: relative;
+    color: rgb(80, 80, 77);
+    display: block;
+    margin: auto;
+    height: 50px;
+    width: 80%;
+    border: 3px solid rgb(80, 80, 77);
+    border-radius: 5px;
+    font-size: 28px;
+    text-decoration: none;
+    background: transparent;
+}
+
+#loginButtonConfirm:hover {
+    background: rgb(80, 80, 77);
+    color: white;
+}
+
+.loginIncorrectPassword {
+    margin-top: 10px;
+    font-size: 19px;
+    position: relative;
+    height: auto;
+    width: 100%;
+    color: darkred;
+}
 
 
 .ListManageOrderProductItem {
@@ -302,17 +392,15 @@
     border-style: outset;
 }
 
-/* ch */
 .LMOPGeneralData {
     position: sticky;
-    top: 10;
+    top: 10px;
     height: 60px;
     width: 96%;
     margin: auto;
     z-index: 2;
 }
 
-/* ch */
 .LMOPGDOrderName {
     float: right;
     position: relative;
@@ -322,28 +410,7 @@
     border: rgb(80, 80, 77) solid 2px;
     border-radius: 10px;
 }
-
-    /* ch */
-    .LMOPGDOrderName > img {
-        display: block;
-        height: 42px;
-        margin: 2px;
-        float: left;
-    }
-
-    /* ch */
-    .LMOPGDOrderName > h1 {
-        position: relative;
-        display: block;
-        font-size: 23px;
-        top: 50%;
-        transform: translateY(-50%);
-        text-align: center;
-        font-weight: 300;
-        color: rgb(80, 80, 77);
-    }
-
-/* ch */
+ 
 .LMOPGDTotalPrice {
     margin-left: 30px;
     margin-right: 30px;
@@ -356,7 +423,6 @@
     border-radius: 10px;
 }
 
-/* ch */
 .LMOPGDTotalPrice > input {
     position: relative;
     font-size: 23px;
@@ -369,7 +435,6 @@
     color: rgb(80, 80, 77);
 }
 
-/* ch */
 .LMOPGDTotalPrice > img {
     display: block;
     height: 42px;
@@ -377,7 +442,6 @@
     float: left;
 }
 
-/* ch */
 .LMOPSybmitButton {
     float: right;
     position: relative;
@@ -388,3 +452,207 @@
     border: rgb(80, 80, 77) solid 2px;
     border-radius: 100%;
 }
+
+.LNBShop {
+    position: relative;
+    height: 50px;
+    width: 190px;
+    color: white;
+    overflow: hidden;
+    float: left;
+}
+
+.LNBLogOutButton {
+    float: right;
+    height: 50px;
+    width: 50px;
+    margin: 5px;
+}
+
+.LNBLogOutButton > img {
+    height: 40px;
+    width: 40px;
+}
+
+.LNBButtons {
+    position: absolute;
+    height: 300px;
+    width: 100%;
+    top: 15%;
+}
+
+.LNBButton {
+    position: relative;
+    display: block;
+    height: 50px;
+    text-decoration: none;
+    transform: translateX(0%);
+    transition: transform 0.7s;
+}
+
+.LNBButton > div {
+    display: block;
+    position: relative;
+    color: white;
+    font-size: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: right;
+}
+
+.LNBButton:hover {
+    transform: translateX(-10%);
+    transition: transform 0.7s;
+}
+
+.LNBLogOutButton:hover {
+    transform: translateX(5px);
+    transition: transform 0.7s;
+}
+
+/* ORDERS LIST */
+
+.OrdersList {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+    height: inherit;
+}
+
+.OLElement {
+    position: relative;
+    margin: 20px 0px 0px 20px;
+    height: 350px;
+    width: 230px;
+    float: left;
+    font-weight: 300;
+    transition: box-shadow 0.7s;
+    box-shadow: 2px 4px 8px 2px rgba(0, 0, 0, 0.2);
+}
+
+.OLElement:hover {
+    transition: box-shadow 0.7s;
+    box-shadow: 4px 8px 12px 4px rgba(0, 0, 0, 0.2);
+}
+
+.OLEName {
+    position: relative;
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 30px;
+}
+
+.OLEButtonsContainer {
+    position: absolute;
+    display: block;
+    margin-top: 20px;
+    font-size: 30px;
+    height: 50px;
+    width: 100%;
+    bottom: 10px;
+    left: 0px;
+}
+
+.OLEBCManage {
+    position: absolute;
+    right: 55%;
+    display: inline-block;
+    background: #0081fa;
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+}
+
+.OLEBCManage:hover {
+    transition: background 0.2s;
+    background: rgba(0, 129, 250, 0.856);
+}
+
+.OLEBCManage > img {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 36px;
+    height: 36px;
+}
+
+.OLEBCDelete {
+    position: absolute;
+    left: 55%;
+    display: inline-block;
+    background: #e8005d;
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+}
+
+.OLEBCDelete:hover {
+    transition: background 0.2s;
+    background: #e8005dc7;
+}
+
+.OLEBCDelete > img {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 36px;
+    height: 36px;
+}
+
+.OLECreationDateCont {
+    top: 30px;
+    position: relative;
+    height: 46px;
+    width: 80%;
+    margin: auto;
+    border: rgb(80, 80, 77) solid 2px;
+    border-radius: 5px;
+}
+
+.OLECDCHeader {
+    padding-left: 5px;
+    padding-right: 5px;
+    position: absolute;
+    transform: translate(5%, -50%);
+    background: white;
+}
+
+.OLECDCValue {
+    display: block;
+    position: relative;
+    font-size: 20px;
+    top: 50%;
+    text-align: center;
+    transform: translateY(-50%);
+}
+
+.OLCreateNewOrderButton {
+    position: fixed;
+    display: block;
+    height: 80px;
+    width: 80px;
+    background: green;
+    right: 15px;
+    bottom: 15px;
+    border-radius: 100%;
+    z-index: 10;
+}
+
+.OLCreateNewOrderButton > img {
+    position: relative;
+    height: 50px;
+    width: 50px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.OLCreateNewOrderButton:hover {
+    transition: background 0.7s;
+    background: rgba(0, 128, 0, 0.76);
+}
+
+/* end ORDERS LIST end */

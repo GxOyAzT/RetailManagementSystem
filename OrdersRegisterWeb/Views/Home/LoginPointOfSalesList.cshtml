@@ -7,7 +7,7 @@
     <div class="loginList">
         @foreach (var item in Model)
         {
-            <a class="loginListItem" asp-action="Login" asp-route-shopId="@(item.Id)">
+            <a class="loginListItem" asp-action="Login" asp-route-shopId="@(item.Id)" asp-route-isPasswordIncorrect="false">
                 <div class="loginListItemText">@(item.City) @(item.Street)</div>
             </a>
         }

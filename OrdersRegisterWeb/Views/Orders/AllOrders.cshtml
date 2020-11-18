@@ -1,25 +1,27 @@
 ﻿@model List<OrderModel>
 
-<h1>Orders/AllOrders</h1>
+<div class="OrdersList">
+    <a class="OLCreateNewOrderButton" asp-action="CreateNewBlankOrder">
+        <img src="~/images/icons/plusIcon.png" alt="+">
+    </a>
+    @foreach (var item in Model)
+    {
+        <div class="OLElement">
+            <p class="OLEName">@(item.OrderUqName)</p>
 
-<a asp-action="CreateNewBlankOrder">+ Create new order +</a>
+            <div class="OLECreationDateCont">
+                <div class="OLECDCHeader">Creation Date</div>
+                <div class="OLECDCValue">@(item.CreationDate.ToString("dd-MM-yyyy"))</div>
+            </div>
 
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Detials</th>
-            <th>Remove</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@(item.OrderUqName)</td>
-                <td><a asp-action="OrderDetails" asp-route-orderId="@(item.Id.ToString())">See</a></td>
-                <td><a asp-action="DeleteOrder" asp-route-orderId="@(item.Id.ToString())">Delete</a></td>
-            </tr>
-        }
-    </tbody>
-</table>
+            <div class="OLEButtonsContainer">
+                <a class="OLEBCManage" asp-action="OrderDetails" asp-route-orderId="@(item.Id.ToString())">
+                    <img src="~/images/icons/manageOrderIcon.png" alt="See">
+                </a>
+                <a class="OLEBCDelete" asp-action="DeleteOrder" asp-route-orderId="@(item.Id.ToString())">
+                    <img src="~/images/icons/deleteIcon.png" alt="Delete">
+                </a>
+            </div>
+        </div>
+    }
+</div>

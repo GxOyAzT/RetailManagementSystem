@@ -80,12 +80,17 @@ namespace OrdersRegisterWeb.Controllers
 
             var models = getActiveShops.Get();
 
+            ViewBag.Title = "Login";
+
             return View(models);
         }
 
         [HttpGet]
-        public IActionResult Login(string shopId)
+        public IActionResult Login(string shopId, string isPasswordIncorrect)
         {
+            if (shopId == null || isPasswordIncorrect == null)
+                return RedirectToAction("LoginPointOfSalesList");
+
             IGetShopWhereId getShopWhereId;
 
             using (var scope = ContainerConfig.Configure().BeginLifetimeScope())
@@ -96,7 +101,8 @@ namespace OrdersRegisterWeb.Controllers
             var model = new LoginViewModel()
             {
                 ShopModel = getShopWhereId.Get(Guid.Parse(shopId)),
-                UserName = shopId
+                UserName = shopId,
+                IsPasswordCorrect = Convert.ToBoolean(isPasswordIncorrect)
             };
 
             return View(model);
@@ -117,7 +123,16 @@ namespace OrdersRegisterWeb.Controllers
                 }
             }
 
-            return View();
+            return RedirectToAction("Login", new { shopId = loginViewModel.UserName.ToString(), isPasswordIncorrect = true.ToString() });
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                await _signInManager.SignOutAsync();
+            }
+            return RedirectToAction("LoginPointOfSalesList");
         }
     }
 }
