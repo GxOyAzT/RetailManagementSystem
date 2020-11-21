@@ -12,31 +12,33 @@
     <!-- IF USER IS AUTHENTICATE -->
     @if (User.Identity.IsAuthenticated)
     {
-    <div class="LeftNavigationBar">
-        <div class="LNBShop">
-            <label>USER</label>
-            <br />
-            <label>USER</label>
+        <div id="LeftNavigationBarId" class="LeftNavigationBar">
+            <div class="LNBShop">
+                <label>USER</label>
+                <br />
+                <label>USER</label>
+            </div>
+            <a class="LNBLogOutButton" asp-controller="Home" asp-action="LogOut"><img src="~/images/icons/logoutIcon.png" alt="log out"></a>
+            <div class="LNBMoveButton" onclick="MoveNavigationBar()"></div>
+            <div class="LNBButtons">
+                <a class="LNBButton" asp-controller="Orders" asp-action="AllOrders"><div>Manage Orders</div></a>
+                <a class="LNBButton" asp-controller="Orders" asp-action="ConfirmedOrders"><div>Confirmed Orders</div></a>
+            </div>
         </div>
-        <a class="LNBLogOutButton" asp-controller="Home" asp-action="LogOut"><img src="~/images/icons/logoutIcon.png" alt="log out"></a>
-        <div class="LNBButtons">
-            <a class="LNBButton" asp-controller="Orders" asp-action="AllOrders"><div>Manage Orders</div></a>
-            <a class="LNBButton" asp-controller="Orders" asp-action="ConfirmedOrders"><div>Confirmed Orders</div></a>
-        </div>
-    </div>
-    <div style="height: 100vh; width: 100vw; position: relative;">
-        <div class="LeftBlank">
+        <div style="height: 100vh; width: 100vw; position: relative;">
+            <div id="LeftBlankId" class="LeftBlank">
 
+            </div>
+            <div id="RightContentId" class="RightContent">
+                @RenderBody()
+            </div>
         </div>
-        <div class="RightContent">
-            @RenderBody()
-        </div>
-    </div>
-    
+
     }
     else
     {
         @RenderBody()
     }
+    <script src="@Url.Content("~/scripts/LayoutNavbarScript.js")"></script>
 </body>
 </html>

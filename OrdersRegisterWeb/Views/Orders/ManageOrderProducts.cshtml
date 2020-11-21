@@ -4,7 +4,8 @@
         <div class="ListManageOrderProduct">
             <form method="post">
                 <div class="LMOPGeneralData">
-                    <button class="LMOPSybmitButton" type="submit">
+                    <button class="LMOPSybmitButton" >
+                        <img src="~/images/icons/pencilIcon.png"/>
                     </button>
                     <div class="LMOPGDTotalPrice">
                         <img src="~/images/icons/dollarIcon.png" alt="">
@@ -12,7 +13,7 @@
                     </div>
                     <div class="LMOPGDOrderName">
                         <img src="~/images/icons/orderIcon.png" alt="">
-                        <h1>@(ViewBag.OrderName)</h1>
+                        <p>@(ViewBag.OrderName)</p>
                     </div>
                 </div>
                 @for (int i = 0; i < Model.Count; i++)
@@ -20,7 +21,7 @@
                     <input hidden asp-for="@Model[i].ProductBasicsModel.Id" />
                     <input hidden asp-for="@Model[i].OrderId" />
                     <div class="ListManageOrderProductItem">
-                        <input id="@("InputBoxPrice" + i.ToString())" hidden type="text" value="@(Math.Round(Model[i].ProductBasicsModel.ProductStorageModel.QuantityInBox * Model[i].ProductBasicsModel.ProductPriceModel.Price, 2))" />
+                        <input id="@("InputBoxPrice" + i.ToString())" hidden type="text" value="@(Math.Round(Model[i].ProductBasicsModel.ProductStorageModel.QuantityInBox * Model[i].ProductBasicsModel.ProductPriceModel.Price, 2).ToString().Replace(',', '.'))" />
                         <div class="LMOPIProducerProductName">
                             <label class="LMOPIProducer">@(Model[i].ProductBasicsModel.ProducerModel.CompanyName)</label>
                             <label class="LMOPIProductName">@(Model[i].ProductBasicsModel.ShortName)</label>
@@ -29,18 +30,17 @@
                             <label>@(Model[i].ProductBasicsModel.Barecode)</label>
                         </div>
                         <div class="LMOPIRetialBoxPrice">
-                            <label class="LMOPIRetailPrice">@(Math.Round(Model[i].ProductBasicsModel.ProductPriceModel.Price ,2)),- x @(Model[i].ProductBasicsModel.ProductStorageModel.QuantityInBox)</label>
-                            <label class="LMOPIBoxPrice">= @(Math.Round(Model[i].ProductBasicsModel.ProductStorageModel.QuantityInBox * Model[i].ProductBasicsModel.ProductPriceModel.Price, 2)),-</label>
+                            <label class="LMOPIRetailPrice">@(Math.Round(Model[i].ProductBasicsModel.ProductPriceModel.Price ,2)) $ x @(Model[i].ProductBasicsModel.ProductStorageModel.QuantityInBox) = @(Math.Round(Model[i].ProductBasicsModel.ProductStorageModel.QuantityInBox * Model[i].ProductBasicsModel.ProductPriceModel.Price, 2)) $</label>
                         </div>
                         <div class="Quantity">
-                            <div class="QuantityButtonIncrement">
-                                <button type="button" onclick="IncrementOrderQuantity('@i')">+</button>
+                            <div class="QuantityButtonDecrement" onclick="DecrementOrderQuantity('@i')">
+                                <img src="~/images/icons/decrementIcon.png"/>
                             </div>
                             <div class="QuantityInput">
                                 <input id="@("QuantityInput" + i.ToString())" class="LabelInQuantityLabel" readonly value="@(Model[i].NewOrderedQua)" asp-for="@Model[i].NewOrderedQua" />
                             </div>
-                            <div class="QuantityButtonDecrement">
-                                <button type="button" onclick="DecrementOrderQuantity('@i')">-</button>
+                            <div class="QuantityButtonIncrement" onclick="IncrementOrderQuantity('@i')">
+                                <img src="~/images/icons/incrementIcon.png"/>
                             </div>
                         </div>
                         <div class="LMOPITotalPrice">
