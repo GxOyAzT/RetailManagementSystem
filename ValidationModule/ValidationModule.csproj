@@ -5,11 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Abstraction\" />
-    <Folder Include="Implementation\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\DatabaseModule\DatabaseModule.csproj" />
     <ProjectReference Include="..\Models\Models.csproj" />
   </ItemGroup>

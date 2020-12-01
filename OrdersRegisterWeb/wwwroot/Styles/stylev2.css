@@ -10,6 +10,7 @@
     width: calc(100% - 250px);
     float: left;
     background: white;
+    transition: width 1s;
 }
 
 .LeftBlank {
@@ -18,6 +19,7 @@
     width: 250px;
     float: left;
     background: transparent;
+    transition: width 1s;
 }
 
 .LeftNavigationBar {
@@ -26,14 +28,13 @@
     width: 250px;
     background: linear-gradient( 180deg, rgba(30, 30, 30, 1) 80%, rgba(30, 30, 30, 0.9) 100% );
     z-index: 10;
-    /*transition: transform 1s;*/
+    transition: transform 1s;
 }
 
 .LNBMoveButton {
     position: absolute;
     height: 50px;
     width: 50px;
-    background: green;
     right: 0px;
 }
 
@@ -105,7 +106,7 @@
 
 .ListManageOrderProduct {
     position: relative;
-    width: 100%;
+    width: calc(100% - 20px);
     margin: 10px;
     background: transparent;
     float: left;
@@ -674,3 +675,102 @@
 }
 
 /* end ORDERS LIST end */
+
+/* ORDER DETAILS */
+
+.OrderDetailsView {
+    position: relative;
+    width: 100%;
+}
+
+.ODVTopContainer {
+    position: sticky;
+    height: 35px;
+    width: 100%;
+    background: #086788;
+}
+
+.ODVTCOrderName {
+    position: absolute;
+    font-size: 25px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+#LNBMBImage {
+    height: 40px;
+    margin: 5px;
+    transition: transform 1s;
+}
+
+.ODVTCButtonsContainer {
+    position: absolute;
+    height: 100%;
+    width: 200px;
+    right: 10px;
+}
+
+.ODVTCBCButton {
+    display: block;
+    position: relative;
+    height: 100%;
+    width: 50%;
+    text-decoration: none;
+    color: white;
+    float: left;
+    background: #086788;
+}
+
+.ODVTCBCButton > div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.ODVTCBCButton:hover {
+    background: #0a7ea5;
+    transition: background 0.5s;
+}
+
+.ODVListContainer {
+    position: relative;
+    width: calc(100% - 10px);
+    height: auto;
+    margin: auto;
+    padding-bottom: 70px;
+    margin-top: 10px;
+}
+
+.ODVLCItem {
+    position: relative;
+    width: calc(100% - 4px);
+    height: 50px;
+    margin: auto;
+    margin-top: 5px;
+    background: #ffeab9;
+}
+
+.ODVTotalPrice {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    height: 50px;
+    width: 150px;
+    background: #0a7ea5;
+    color: white;
+    font-size: 25px;
+    border-radius: 10px;
+}
+
+.ODVTotalPrice > p {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+}
+
+/* end ORDER DETAILS end */

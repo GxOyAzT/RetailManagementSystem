@@ -19,7 +19,9 @@
                 <label>USER</label>
             </div>
             <a class="LNBLogOutButton" asp-controller="Home" asp-action="LogOut"><img src="~/images/icons/logoutIcon.png" alt="log out"></a>
-            <div class="LNBMoveButton" onclick="MoveNavigationBar()"></div>
+            <div class="LNBMoveButton" onclick="MoveNavigationBar()">
+                <img id="LNBMBImage" src="~/images/icons/backIcon.png" alt="">
+            </div>
             <div class="LNBButtons">
                 <a class="LNBButton" asp-controller="Orders" asp-action="AllOrders"><div>Manage Orders</div></a>
                 <a class="LNBButton" asp-controller="Orders" asp-action="ConfirmedOrders"><div>Confirmed Orders</div></a>
