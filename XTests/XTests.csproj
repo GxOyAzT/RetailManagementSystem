@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GMProcessor\GMProcessor.csproj" />
+    <ProjectReference Include="..\ORProcessor\ORProcessor.csproj" />
     <ProjectReference Include="..\SMProcessor\SMProcessor.csproj" />
   </ItemGroup>
 
